@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer name="fragment_movie_detail_column_count">3</integer>
+
+    <!--basic image dimensions in movielist-->
+    <dimen name="list_item_card_width">200dp</dimen>
+    <dimen name="list_item_card_height">300dp</dimen>
+
+    <dimen name="list_item_image_width">200dp</dimen>
+    <dimen name="list_item_image_height">300dp</dimen>
+
+    <!--details details-->
+
+    <dimen name="detail_movie_thumbnail_width">150dp</dimen>
+    <dimen name="detail_movie_thumbnail_height">225dp</dimen>
+
+
+
+</resources>

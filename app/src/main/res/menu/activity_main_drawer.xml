@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/popular_movies"
+            android:checked="true"
+            android:icon="@drawable/ic_action_popular_movie"
+            android:title="@string/drawer_popular_movies" />
+        <item
+            android:id="@+id/highest_rated_movies"
+            android:icon="@drawable/ic_action_ic_highest_rating"
+            android:title="@string/drawer_top_rated" />
+        <item
+            android:id="@+id/favorite_movies"
+            android:icon="@drawable/ic_action_action_favorite_outline"
+            android:title="@string/drawer_favorites" />
+    </group>
+
+    <item android:title="@string/drawer_section_backstage">
+        <menu>
+            <item
+                android:id="@+id/nav_help"
+                android:icon="@android:drawable/ic_menu_help"
+                android:title="@string/drawer_help" />
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@android:drawable/ic_menu_info_details"
+                android:title="@string/drawer_info" />
+        </menu>
+    </item>
+
+    <item android:title="@string/drawer_section_whodunnit">
+        <item
+            android:id="@+id/nav_whodunnit"
+            android:icon="@drawable/ic_action_sherlock"
+            android:title="@string/drawer_whodunnit" />
+
+    </item>
+
+
+</menu>

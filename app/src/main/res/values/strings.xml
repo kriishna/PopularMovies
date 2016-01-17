@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">Popular Movies</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="action_share">Share</string>
+    <string name="refresh">Refresh</string>
+
+    <!-- if porting change this to your package -->
+    <string name="content_authority">com.jimandreas.popularmovies</string>
+
+
+
+    <string name="nav_bar_header_text">All the Movies!! XYZZY</string>
+
+
+    <!-- menu items and toolbar -->
+    <string name="drawer_popular_movies">Popular Movies</string>
+    <string name="drawer_top_rated">Top Rated Movies</string>
+    <string name="drawer_favorites">Favorite Movies</string>
+    <string name="drawer_section_backstage">Backstage</string>
+    <string name="drawer_help">Help</string>
+    <string name="drawer_info">Info and Credits</string>
+    <string name="drawer_info_url">http://www.jimandreas.com/2015/11/this-android-application-uses-tmdb-api.html</string>
+    <string name="drawer_help_url">http://www.jimandreas.com/2015/11/popular-movies-help-page.html</string>
+    <string name="drawer_section_whodunnit">Audacity Final Project by:</string>
+    <string name="drawer_whodunnit">Audacity Final Project by:</string>
+    <string name="drawer_whodunnit_url">http://plus.google.com/+JimAndreas</string>
+
+    <!-- menu items and toolbar -->
+    <string name="dialog_no_favorites_set">You have not yet chosen any favorite movies.  Press the heart button when you like a movie and want to save it to your favorites list.</string>
+    <string name="dialog_no_favorites_ok">OK</string>
+    <string name="dialog_no_favorites_title">Favorites</string>
+
+    <!-- movie detail fragment -->
+    <string name="movie_detail_trailers">Trailers</string>
+    <string name="movie_detail_reviews">Reviews</string>
+
+    <!-- Empty Database -->
+
+    <string name="empty_movie_list">Looking for movies...</string>
+    <string name="empty_list">No TheMovieDB Information Available</string>
+    <string name="empty_list_no_network">No information available. The network is not available to fetch movie data.</string>
+    <string name="empty_list_server_down">No information available. The server is not returning data.</string>
+    <string name="empty_list_server_error">No information available. The server is not returning valid data. Please check for an updated version of Sunshine.</string>
+
+    <string name="movie_detail_fragment_no_connection">No network, so no more movies, sorry \'bout that!!</string>
+    <string name="movie_detail_fragment_fetching_another_page">Fetching another page of movies</string>
+
+
+
+</resources>

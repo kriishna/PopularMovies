@@ -1,0 +1,27 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!--basic image dimensions in movielist-->
+
+    <dimen name="list_item_card_width">190dp</dimen>
+    <dimen name="list_item_card_height">270dp</dimen>
+
+    <dimen name="list_item_image_width">190dp</dimen>
+    <dimen name="list_item_image_height">270dp</dimen>
+
+    <!--details details-->
+
+    <integer name="fragment_movie_detail_column_count">2</integer>
+
+    <dimen name="detail_backdrop_height">100dp</dimen>
+    <dimen name="detail_movie_thumbnail_width">150dp</dimen>
+    <dimen name="detail_movie_thumbnail_height">225dp</dimen>
+    <dimen name="card_view_elevation">6dp</dimen>
+
+</resources>

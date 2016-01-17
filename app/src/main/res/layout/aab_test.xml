@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--OK this looks pretty good.   Quite a baroque combination but looks like-->
+<!--I have won the argument with GridLayout-->
+
+    <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/movie_detail_grid_layout2"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:background="@android:color/white"
+        android:columnCount="9"
+        android:orientation="horizontal"
+        android:rowCount="25"
+        >
+
+        <!--
+
+        this layout strategy is explained in:
+        http://stackoverflow.com/questions/11863329/gridlayout-and-row-column-span-woe
+        mostly...
+        -->
+
+        <TextView
+            android:id="@+id/movie_detail_title"
+            android:fontFamily="sans-serif"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Title"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_columnSpan="6"
+            android:layout_gravity="fill"
+            android:textAlignment="gravity"
+            android:gravity="left" />
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_row="3"
+            android:layout_column="1"
+            android:layout_columnSpan="5">
+
+            <TextView
+                tools:text="Quo usque tandem abutere, Catilina, patientia nostra? quam diu etiam furor iste tuus nos eludet? "
+                android:id="@+id/movie_detail_synopsis"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:fontFamily="sans-serif"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="2"
+            android:layout_column="1"
+            android:layout_columnSpan="6">
+
+            <ImageView
+                android:layout_width="@dimen/detail_movie_thumbnail_width"
+                android:layout_height="@dimen/detail_movie_thumbnail_height"
+                android:id="@+id/movie_detail_poster_image"
+                tools:background="@drawable/sample_185w_277h"
+                 />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/movie_detail_favorite_imageviewbutton"
+                android:clickable="true"
+                tools:src="@drawable/ic_favorite_selected"
+                android:layout_gravity="fill_vertical" />
+
+
+            <ProgressBar
+                android:indeterminate="true"
+                android:id="@+id/movie_detail_progress_circle"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="0dp"
+            android:layout_row="11"
+            android:layout_column="0" />
+
+
+    <Space
+        android:layout_width="5dp"
+        android:layout_column="0"
+        android:layout_row="0" />
+
+    <Space
+        android:layout_width="36dp"
+        android:layout_column="1"
+        android:layout_row="0" />
+
+    <Space
+        android:layout_width="36dp"
+        android:layout_column="2"
+        android:layout_row="0" />
+
+    <Space
+        android:layout_width="36dp"
+        android:layout_column="3"
+        android:layout_row="0" />
+
+    <Space
+        android:layout_width="36dp"
+        android:layout_column="4"
+        android:layout_row="0" />
+
+    <Space
+        android:layout_width="36dp"
+        android:layout_column="5"
+        android:layout_row="0" />
+
+    <Space
+        android:layout_width="36dp"
+        android:layout_column="6"
+        android:layout_row="0" />
+
+
+    <!--
+   ***   Trailers - woohoo! ****
+   -->
+
+
+    <ImageButton
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/movie_detail_trailer_play_button"
+        android:layout_row="10"
+        android:layout_column="1"
+        android:src="@android:drawable/ic_media_play"
+        android:layout_gravity="center_vertical|fill"
+        android:clickable="true"
+        android:background="?android:selectableItemBackground"
+        />
+
+    <TextView
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        tools:text="Trailer 1 name here"
+        android:id="@+id/movie_detail_trailer1"
+        android:layout_row="10"
+        android:layout_column="2"
+        android:layout_columnSpan="4"
+        android:clickable="true"
+        android:background="?android:selectableItemBackground"
+        android:layout_gravity="center_vertical|fill"
+        android:gravity="center_vertical"
+        android:layout_width="300dp" />
+
+    <ImageButton
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/movie_detail_trailer_play_button2"
+        android:layout_row="11"
+        android:layout_column="1"
+        android:src="@android:drawable/ic_media_play"
+        android:layout_gravity="center_vertical|fill"
+        android:clickable="true"
+        android:background="?android:selectableItemBackground"/>
+
+    <TextView
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_gravity="center_vertical|fill"
+        android:gravity="center_vertical"
+        android:fontFamily="sans-serif"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        tools:text="Trailer 2 name here"
+        android:id="@+id/movie_detail_trailer2"
+        android:layout_row="11"
+        android:layout_column="2"
+        android:layout_columnSpan="4"
+        android:clickable="true"
+        android:background="?android:selectableItemBackground"
+        android:layout_width="300dp" />
+
+    <ImageButton
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/movie_detail_trailer_play_button3"
+        android:layout_row="12"
+        android:layout_column="1"
+        android:src="@android:drawable/ic_media_play"
+        android:layout_gravity="center_vertical|fill"
+        android:clickable="true"
+        android:background="?android:selectableItemBackground"/>
+
+    <TextView
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_gravity="center_vertical|fill"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        tools:text="Trailer 3 name here"
+        android:id="@+id/movie_detail_trailer3"
+        android:layout_row="12"
+        android:layout_column="2"
+        android:layout_columnSpan="4"
+        android:clickable="true"
+        android:background="?android:selectableItemBackground"
+        android:layout_width="300dp" />
+
+    <!--
+       ***   Now for the reviews, Header first ****
+       -->
+
+    <TextView
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_gravity="fill_horizontal"
+        android:fontFamily="sans-serif"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/movie_detail_reviews"
+        android:id="@+id/movie_detail_reviews"
+        android:layout_row="13"
+        android:layout_column="1"
+        android:layout_columnSpan="5"
+        android:layout_width="wrap_content" />
+
+    <ImageButton
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/play_rev1"
+        android:layout_row="14"
+        android:layout_column="1"
+        android:src="@android:drawable/ic_media_play"
+        android:layout_gravity="center_vertical|fill"
+        android:clickable="true"
+        android:background="?android:selectableItemBackground"
+        />
+
+    <TextView
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        tools:text="Review1 author name here"
+        android:id="@+id/movie_review1"
+        android:layout_row="14"
+        android:layout_column="2"
+        android:layout_columnSpan="4"
+        android:clickable="true"
+        android:background="?android:selectableItemBackground"
+        android:layout_gravity="center_vertical|fill"
+        android:gravity="center_vertical"
+        android:layout_width="300dp" />
+
+    <ImageButton
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/play_rev2"
+        android:layout_row="15"
+        android:layout_column="1"
+        android:src="@android:drawable/ic_media_play"
+        android:layout_gravity="center_vertical|fill"
+        android:clickable="true"
+        android:background="?android:selectableItemBackground"
+        />
+
+    <TextView
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        tools:text="Review1 author name here"
+        android:id="@+id/movie_review2"
+        android:layout_row="15"
+        android:layout_column="2"
+        android:layout_columnSpan="4"
+        android:clickable="true"
+        android:background="?android:selectableItemBackground"
+        android:layout_gravity="center_vertical|fill"
+        android:gravity="center_vertical"
+        android:layout_width="300dp" />
+
+    <ImageButton
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/play_rev3"
+        android:layout_row="16"
+        android:layout_column="1"
+        android:src="@android:drawable/ic_media_play"
+        android:layout_gravity="center_vertical|fill"
+        android:clickable="true"
+        android:background="?android:selectableItemBackground"
+        />
+
+    <TextView
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        tools:text="Review1 author name here"
+        android:id="@+id/movie_review3"
+        android:layout_row="16"
+        android:layout_column="2"
+        android:layout_columnSpan="4"
+        android:clickable="true"
+        android:background="?android:selectableItemBackground"
+        android:layout_gravity="center_vertical|fill"
+        android:gravity="center_vertical"
+        android:layout_width="300dp" />
+
+
+    <TextView
+
+        android:layout_gravity="center_vertical|fill|bottom|left"
+        android:fontFamily="sans-serif"
+        android:layout_height="30dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        tools:text="120 minutes"
+        android:id="@+id/movie_detail_runningtime"
+        android:layout_row="6"
+        android:layout_column="1"
+        android:gravity="center_vertical"
+        android:layout_columnSpan="6" />
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/btn_star_on_normal_holo_light"
+        android:id="@+id/vote_star"
+        android:layout_row="4"
+        android:layout_column="1"
+        android:layout_gravity="center_vertical|fill" />
+
+    <TextView
+        android:fontFamily="sans-serif"
+        android:layout_height="25dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        tools:text="9/10 (100)"
+        android:id="@+id/movie_detail_rating_and_votes"
+        android:layout_row="4"
+        android:layout_column="2"
+        android:layout_gravity="fill"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_columnSpan="2" />
+
+    <TextView
+
+        android:layout_gravity="center_vertical|fill|top"
+        android:fontFamily="sans-serif"
+        android:layout_height="30dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        tools:text="Year - Mo - Day"
+        android:id="@+id/movie_detail_year"
+        android:layout_row="5"
+        android:layout_column="1"
+        android:layout_columnSpan="6" />
+
+
+    <TextView
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_gravity="fill_horizontal"
+        android:fontFamily="sans-serif"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/movie_detail_trailers"
+        android:id="@+id/movie_detail_trailers"
+        android:layout_row="7"
+        android:layout_column="1"
+        android:layout_columnSpan="5" />
+
+
+</GridLayout>
