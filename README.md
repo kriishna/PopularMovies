@@ -16,13 +16,22 @@ with this identifier (edit in your key between the quotes):
 
      TheMovieDbApiToken="12341234123412341234"
 
+## DISCLAIMER
+
+**THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.**
 
 ## Design comments - UX and Architecture
 
 The menu is implemented in a [Navigation Drawer](https://www.google.de/design/spec/patterns/navigation-drawer.html).   
 Here is a screenshot of the Navigation Drawer:
 
-![Navigation Drawer Screenshot](./screenshot_nav_drawer.PNG)
+![Navigation Drawer Screenshot](./Screenshots/screenshot_nav_drawer.PNG)
 
 As you can see it provides the required controls to select among "Popular", "Top Rated", or "Favorite" movies.
 It uses the familiar sliding action with a swipe or touch of the drawer icon at the top left of the layout.
@@ -47,7 +56,7 @@ https://www.udacity.com/course/advanced-android-app-development--ud855
 ## Application screenshot
 Just the tablet landscape screenshot for now.   If you scroll to end of this Markdown document, then you can see other screenshots in the appendix.
 
-![Tablet Landscape Screenshot](./screenshot_tablet_landscape.png)
+![Tablet Landscape Screenshot](./Screenshots/screenshot_tablet_landscape.png)
 
 ## Criteria
 
@@ -146,8 +155,8 @@ http://square.github.io/picasso/
 # Appendix - App Screenshots
 
 ## Phone Portrait
-![Phone Portrait Screenshot](./screenshot_phone_portrait.png)
+![Phone Portrait Screenshot](./Screenshots/screenshot_phone_portrait.png)
 ## Phone Portrait - showing movie details
-![Phone Detail Portrait Screenshot](./screenshot_phone_details_portrait.png)
+![Phone Detail Portrait Screenshot](./Screenshots/screenshot_phone_details_portrait.png)
 ## Tablet in portrait orientation
-![Tablet Portrait Screenshot](./screenshot_tablet_portrait.png)
+![Tablet Portrait Screenshot](./Screenshots/screenshot_tablet_portrait.png)
