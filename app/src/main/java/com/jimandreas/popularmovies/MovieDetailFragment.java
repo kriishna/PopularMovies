@@ -8,6 +8,7 @@ import android.database.DatabaseUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -129,7 +130,7 @@ public class MovieDetailFragment extends Fragment
      * The One Grid to Rule them All,
      * and in the funkyness Bind Tem
      */
-    private GridLayout mTheMasterGridLayout;
+    private ConstraintLayout mTheMasterGridLayout;
     /*
      * and now all the little minion views.  Do my bidding!!  *I* have the RING of ANDROID.
      */
@@ -175,7 +176,9 @@ public class MovieDetailFragment extends Fragment
         /*
          * Yes yes my master, we have the Precious handle to the Layout!!
          */
-        mTheMasterGridLayout = (GridLayout) rootView.findViewById(R.id.movie_detail_grid_layout);
+        // mTheMasterGridLayout = (GridLayout) rootView.findViewById(R.id.movie_detail_grid_layout);
+//        mTheMasterGridLayout = (ConstraintLayout)
+//                rootView.findViewById(R.id.movie_detail_grid_layout);
 
         mMDSynopsis = (TextView) rootView.findViewById(R.id.movie_detail_synopsis);
         mMDTitleView = (TextView) rootView.findViewById(R.id.movie_detail_title);
