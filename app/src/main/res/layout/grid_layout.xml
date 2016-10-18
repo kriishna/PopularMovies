@@ -1,116 +1,290 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:columnCount="9"
     android:orientation="horizontal"
-    android:rowCount="8" >
+    android:rowCount="8">
 
     <Button
-        android:layout_columnSpan="2"
-        android:layout_gravity="fill"
-        android:layout_rowSpan="2"
-        android:text="1" />
+        android:text="1"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        android:layout_height="0dp"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_width="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/button10"
+        app:layout_constraintRight_toRightOf="@+id/button7" />
 
     <Button
-        android:layout_columnSpan="2"
-        android:layout_gravity="fill_horizontal"
-        android:text="2" />
+        android:text="2"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        android:layout_height="0dp"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/space35"
+        app:layout_constraintRight_toRightOf="@+id/button8"
+        android:id="@+id/button7"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_width="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:layout_gravity="fill_vertical"
-        android:layout_rowSpan="4"
-        android:text="3" />
+        android:text="3"
+        tools:layout_constraintTop_creator="1"
+        android:layout_height="0dp"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="@+id/button6"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_width="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/space26"
+        android:id="@+id/button8"
+        app:layout_constraintTop_toTopOf="@+id/button6" />
 
     <Button
-        android:layout_columnSpan="3"
-        android:layout_gravity="fill"
-        android:layout_rowSpan="2"
-        android:text="4" />
+        android:text="4"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        android:layout_height="0dp"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="@+id/space35"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/button6"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_width="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/button9"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:layout_columnSpan="3"
-        android:layout_gravity="fill_horizontal"
-        android:text="5" />
+        android:text="5"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        android:layout_height="0dp"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="@+id/button8"
+        app:layout_constraintRight_toRightOf="@+id/space31"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_width="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:id="@+id/button10"
+        app:layout_constraintTop_toTopOf="@+id/button7" />
 
     <Button
-        android:layout_columnSpan="2"
-        android:layout_gravity="fill_horizontal"
-        android:text="6" />
+        android:text="6"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        android:layout_height="0dp"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/space30"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/button9"
+        app:layout_constraintTop_toBottomOf="@+id/button6"
+        android:layout_width="0dp"
+        android:layout_marginRight="32dp" />
+
+    <Space
+        android:layout_width="0dp"
+        app:layout_constraintRight_toLeftOf="parent"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        android:layout_height="0dp"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="@+id/space25"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/space25" />
 
     <Space
         android:layout_width="36dp"
-        android:layout_column="0"
-        android:layout_row="7" />
+        tools:layout_constraintTop_creator="1"
+        android:layout_height="0dp"
+        tools:layout_constraintBottom_creator="1"
+        android:layout_marginStart="36dp"
+        app:layout_constraintBottom_toBottomOf="@+id/space31"
+        android:id="@+id/space25"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/space31"
+        android:layout_marginLeft="36dp" />
 
     <Space
         android:layout_width="36dp"
-        android:layout_column="1"
-        android:layout_row="7" />
+        app:layout_constraintRight_toLeftOf="@+id/space26"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        android:layout_height="0dp"
+        tools:layout_constraintBottom_creator="1"
+        android:layout_marginStart="52dp"
+        app:layout_constraintBottom_toBottomOf="@+id/space29"
+        android:layout_marginEnd="52dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="@+id/space25"
+        app:layout_constraintTop_toTopOf="@+id/space29"
+        android:layout_marginLeft="52dp"
+        android:layout_marginRight="52dp"
+        android:id="@+id/space31" />
 
     <Space
         android:layout_width="36dp"
-        android:layout_column="2"
-        android:layout_row="7" />
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        android:layout_height="0dp"
+        tools:layout_constraintBottom_creator="1"
+        android:layout_marginStart="52dp"
+        app:layout_constraintBottom_toBottomOf="@+id/space26"
+        android:layout_marginEnd="52dp"
+        app:layout_constraintRight_toRightOf="@+id/space26"
+        android:id="@+id/space29"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintTop_toTopOf="@+id/space26"
+        app:layout_constraintLeft_toRightOf="@+id/space25"
+        android:layout_marginLeft="52dp"
+        android:layout_marginRight="52dp" />
 
     <Space
         android:layout_width="36dp"
-        android:layout_column="3"
-        android:layout_row="7" />
+        app:layout_constraintRight_toLeftOf="@+id/space28"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        android:layout_height="0dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginEnd="140dp"
+        android:id="@+id/space26"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="@+id/space25"
+        app:layout_constraintTop_toTopOf="@+id/space27"
+        android:layout_marginLeft="140dp"
+        android:layout_marginRight="140dp" />
 
     <Space
         android:layout_width="36dp"
-        android:layout_column="4"
-        android:layout_row="7" />
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        android:layout_height="0dp"
+        tools:layout_constraintBottom_creator="1"
+        android:layout_marginStart="88dp"
+        app:layout_constraintBottom_toBottomOf="@+id/space37"
+        android:layout_marginEnd="88dp"
+        app:layout_constraintRight_toRightOf="@+id/space28"
+        android:id="@+id/space27"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="@+id/space26"
+        app:layout_constraintTop_toTopOf="@+id/space37"
+        android:layout_marginLeft="88dp"
+        android:layout_marginRight="88dp" />
 
     <Space
         android:layout_width="36dp"
-        android:layout_column="5"
-        android:layout_row="7" />
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        android:layout_height="0dp"
+        tools:layout_constraintBottom_creator="1"
+        android:layout_marginStart="36dp"
+        app:layout_constraintBottom_toBottomOf="@+id/space28"
+        android:layout_marginEnd="52dp"
+        app:layout_constraintRight_toRightOf="@+id/space28"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="@+id/space27"
+        app:layout_constraintTop_toTopOf="@+id/space28"
+        android:layout_marginLeft="36dp"
+        android:layout_marginRight="52dp"
+        android:id="@+id/space37" />
 
     <Space
-        android:layout_width="36dp"
-        android:layout_column="6"
-        android:layout_row="7" />
+        android:layout_width="0dp"
+        app:layout_constraintRight_toLeftOf="@+id/button9"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        android:layout_height="0dp"
+        tools:layout_constraintBottom_creator="1"
+        android:id="@+id/space28"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/space33"
+        app:layout_constraintLeft_toLeftOf="@+id/button9"
+        app:layout_constraintTop_toTopOf="@+id/space33" />
 
     <Space
-        android:layout_width="36dp"
-        android:layout_column="7"
-        android:layout_row="7" />
+        android:layout_height="0dp"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/space32" />
 
     <Space
         android:layout_height="36dp"
-        android:layout_column="8"
-        android:layout_row="0" />
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="@+id/space32"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@+id/space32"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_width="0dp"
+        app:layout_constraintLeft_toRightOf="@+id/space32"
+        android:id="@+id/space35" />
 
     <Space
         android:layout_height="36dp"
-        android:layout_column="8"
-        android:layout_row="1" />
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="@+id/space35"
+        android:id="@+id/space36"
+        app:layout_constraintTop_toBottomOf="@+id/space35"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_width="0dp"
+        app:layout_constraintLeft_toRightOf="@+id/space35" />
 
     <Space
         android:layout_height="36dp"
-        android:layout_column="8"
-        android:layout_row="2" />
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="@+id/space36"
+        android:id="@+id/space30"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@+id/space36"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_width="0dp"
+        app:layout_constraintLeft_toRightOf="@+id/space36" />
 
     <Space
         android:layout_height="36dp"
-        android:layout_column="8"
-        android:layout_row="3" />
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="@+id/space30"
+        app:layout_constraintTop_toBottomOf="@+id/space30"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_width="0dp"
+        app:layout_constraintLeft_toRightOf="@+id/space30"
+        android:id="@+id/space38" />
 
     <Space
         android:layout_height="36dp"
-        android:layout_column="8"
-        android:layout_row="4" />
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="@+id/space38"
+        android:id="@+id/space34"
+        app:layout_constraintTop_toBottomOf="@+id/space38"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_width="0dp"
+        app:layout_constraintLeft_toRightOf="@+id/space38" />
 
     <Space
         android:layout_height="36dp"
-        android:layout_column="8"
-        android:layout_row="5" />
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="@+id/space34"
+        android:id="@+id/space33"
+        app:layout_constraintTop_toBottomOf="@+id/space34"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_width="0dp"
+        app:layout_constraintLeft_toRightOf="@+id/space34" />
 
-    <Space
-        android:layout_height="36dp"
-        android:layout_column="8"
-        android:layout_row="6" />
-
-</GridLayout>
+</android.support.constraint.ConstraintLayout>
