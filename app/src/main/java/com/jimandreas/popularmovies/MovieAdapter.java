@@ -43,6 +43,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             mListItem = (RelativeLayout) view.findViewById(R.id.list_item_layout);
 
             view.setOnClickListener(this);
+            // added - symantic change in clicking starting at API 23
+            mListItem.setOnClickListener(this);
         }
 
         @Override
