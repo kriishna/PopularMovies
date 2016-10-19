@@ -12,7 +12,7 @@
     android:rowCount="25">
 
     <!--
-
+    (historical note - old GridLayout strategy:)
     this layout strategy is explained in:
     http://stackoverflow.com/questions/11863329/gridlayout-and-row-column-span-woe
 
