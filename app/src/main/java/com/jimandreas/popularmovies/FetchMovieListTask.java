@@ -339,7 +339,7 @@ public class FetchMovieListTask extends AsyncTask<String, Void, Void> {
                 .appendQueryParameter(APPID, THE_MOVIE_DATABASE_API_KEY)
                 .build();
 
-        Log.i(LOG_TAG, "fetching URL: " + builtUri);
+        Log.i(LOG_TAG, "fetching URL: " + fetch_string);
 
         // These two need to be declared outside the try/catch
         // so that they can be closed in the finally block.
