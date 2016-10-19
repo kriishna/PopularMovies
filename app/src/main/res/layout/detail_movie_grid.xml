@@ -79,13 +79,16 @@
         android:id="@+id/movie_detail_favorite_imageviewbutton"
         android:clickable="true"
         tools:src="@drawable/ic_favorite_selected"
-        tools:layout_constraintTop_creator="1"
         tools:layout_constraintRight_creator="1"
         android:layout_marginEnd="592dp"
         app:layout_constraintRight_toRightOf="@+id/movie_detail_synopsis"
-        android:layout_marginTop="32dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginRight="592dp" />
+        android:layout_marginRight="592dp"
+        android:layout_marginStart="24dp"
+        app:layout_constraintLeft_toRightOf="@+id/movie_detail_poster_image"
+        android:layout_marginLeft="24dp"
+        app:layout_constraintTop_toBottomOf="@+id/movie_detail_title"
+        android:layout_marginTop="24dp"
+        app:layout_constraintHorizontal_bias="0.03" />
 
     <ProgressBar
         android:indeterminate="true"
@@ -95,11 +98,11 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         tools:layout_constraintTop_creator="1"
-        android:layout_marginStart="11dp"
+        android:layout_marginStart="8dp"
         tools:layout_constraintLeft_creator="1"
         app:layout_constraintTop_toTopOf="@+id/movie_detail_favorite_imageviewbutton"
         app:layout_constraintLeft_toRightOf="@+id/movie_detail_favorite_imageviewbutton"
-        android:layout_marginLeft="11dp" />
+        android:layout_marginLeft="8dp" />
 
 
     <TextView
@@ -138,7 +141,8 @@
         android:layout_marginStart="8dp"
         app:layout_constraintLeft_toRightOf="@+id/vote_star"
         android:layout_marginLeft="8dp"
-        android:gravity="center_vertical" />
+        android:gravity="center_vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/vote_star" />
 
     <TextView
 
