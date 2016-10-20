@@ -12,6 +12,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.IntDef;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -34,7 +35,14 @@ import com.jimandreas.popularmovies.data.MovieContract.MoviePopular;
 import com.jimandreas.popularmovies.data.MovieContract.MovieTopRated;
 import com.jimandreas.popularmovies.utils.Utility;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.util.Vector;
+
+import static android.R.attr.mode;
+import static com.jimandreas.popularmovies.TrafficManager.FAVORITES;
+import static com.jimandreas.popularmovies.TrafficManager.POPULAR;
+import static com.jimandreas.popularmovies.TrafficManager.TOP_RATED;
 
 public class PopularMovieFragment extends Fragment
         implements LoaderManager.LoaderCallbacks<Cursor> {
@@ -127,18 +135,29 @@ public class PopularMovieFragment extends Fragment
     private RecyclerView mRecyclerView;
     private boolean mAutoSelectView;
 
-    private String mDisplayMode = DISPLAY_POPULAR;
-
-    public String getMovieDisplayMode() {
-        return mDisplayMode;
-    }
+//    private String mDisplayMode = DISPLAY_POPULAR;
 
     public static String DISPLAY_TAG = "displaytag";
-    public static String DISPLAY_POPULAR = "popular";
-    public static String DISPLAY_TOP_RATED = "toprated";
-    public static String DISPLAY_FAVORITES = "favorites";
+//    public static String DISPLAY_POPULAR = "popular";
+//    public static String DISPLAY_TOP_RATED = "toprated";
+//    public static String DISPLAY_FAVORITES = "favorites";
+
+    /*public static final int POPULAR = 0;
+    public static final int TOP_RATED = 1;
+    public static final int FAVORITES = 2;
+    @IntDef( {POPULAR, TOP_RATED, FAVORITES})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface DisplayMode {}*/
+
+    @TrafficManager.DisplayMode
+    int displayMode = POPULAR;
 
     private Boolean do_click_on_item_zero = false;
+
+    @TrafficManager.DisplayMode
+    public int getMovieDisplayMode() {
+        return displayMode;
+    }
 
     /**
      * A callback interface that all activities containing this fragment must
@@ -185,7 +204,6 @@ public class PopularMovieFragment extends Fragment
 
         View emptyView = rootView.findViewById(R.id.recyclerview_movie_empty);
 
-
         mMovieAdapter = new MovieAdapter(getActivity(), new MovieAdapter.MovieAdapterOnClickHandler() {
             /*
              * handle clicking on an adapter position
@@ -196,18 +214,35 @@ public class PopularMovieFragment extends Fragment
                 Uri uri;
                 String todo;
                 mPosition = vh.getAdapterPosition();
-                if (mDisplayMode.contains(DISPLAY_POPULAR)) {
-                    uri = MoviePopular.buildMovieDetailsUri(movie_id);
-                    mTM.setPopularPosition(mPosition);
-                } else if (mDisplayMode.contains(DISPLAY_TOP_RATED)) {
-                    uri = MovieTopRated.buildMovieDetailsUri(movie_id);
-                    mTM.setTopratedPosition(mPosition);
-                } else if (mDisplayMode.contains(DISPLAY_FAVORITES)) {
-                    mTM.setFavoritesPosition(mPosition);
-                    uri = MovieFavorites.buildMovieDetailsUri(movie_id);
-                } else {
-                    throw new RuntimeException(LOG_TAG + "display mode is screwed up!!");
+
+                switch (displayMode) {
+                    case POPULAR:
+                        uri = MoviePopular.buildMovieDetailsUri(movie_id);
+                        mTM.setPopularPosition(mPosition);
+                        break;
+                    case TOP_RATED:
+                        uri = MovieTopRated.buildMovieDetailsUri(movie_id);
+                        mTM.setTopratedPosition(mPosition);
+                        break;
+                    case FAVORITES:
+                        uri = MovieFavorites.buildMovieDetailsUri(movie_id);
+                        mTM.setFavoritesPosition(mPosition);
+                        break;
+                    default:
+                        throw new RuntimeException(LOG_TAG + "display mode is screwed up!!");
                 }
+//                if (mDisplayMode.contains(DISPLAY_POPULAR)) {
+//                    uri = MoviePopular.buildMovieDetailsUri(movie_id);
+//                    mTM.setPopularPosition(mPosition);
+//                } else if (mDisplayMode.contains(DISPLAY_TOP_RATED)) {
+//                    uri = MovieTopRated.buildMovieDetailsUri(movie_id);
+//                    mTM.setTopratedPosition(mPosition);
+//                } else if (mDisplayMode.contains(DISPLAY_FAVORITES)) {
+//                    mTM.setFavoritesPosition(mPosition);
+//                    uri = MovieFavorites.buildMovieDetailsUri(movie_id);
+//                } else {
+//                    throw new RuntimeException(LOG_TAG + "display mode is screwed up!!");
+//                }
                 
                 /*
                  * inform the parent activity that the user would like info on the movie details
@@ -260,16 +295,31 @@ public class PopularMovieFragment extends Fragment
                     int page_number = 1;
                     if (EXTRA_VERBOSE) Log.d(LOG_TAG, "**** time to get more data!!");
                     FetchMovieListTask fetchMovieListTask = new FetchMovieListTask(getActivity());
-                    if (mDisplayMode.contains(DISPLAY_POPULAR)) {
-                        todo = fetchMovieListTask.FETCH_POPULAR;
-                        page_number = mTM.calculatePopularMoviesPageNumber() + 1;
-                        mTM.setPopularMoviesPageNumber(page_number);
-                    } else if (mDisplayMode.contains(DISPLAY_TOP_RATED)) {
-                        page_number = mTM.calculateTopRatedMoviesPageNumber() + 1;
-                        mTM.setTopRatedMoviesPageNumber(page_number);
-                        todo = fetchMovieListTask.FETCH_TOP_RATED;
-                    } else if (mDisplayMode.contains(DISPLAY_FAVORITES)) {
-                        return;  // don't need to fetch favorites from TheMovieDB
+//                    if (mDisplayMode.contains(DISPLAY_POPULAR)) {
+//                        todo = fetchMovieListTask.FETCH_POPULAR;
+//                        page_number = mTM.calculatePopularMoviesPageNumber() + 1;
+//                        mTM.setPopularMoviesPageNumber(page_number);
+//                    } else if (mDisplayMode.contains(DISPLAY_TOP_RATED)) {
+//                        page_number = mTM.calculateTopRatedMoviesPageNumber() + 1;
+//                        mTM.setTopRatedMoviesPageNumber(page_number);
+//                        todo = fetchMovieListTask.FETCH_TOP_RATED;
+//                    } else if (mDisplayMode.contains(DISPLAY_FAVORITES)) {
+//                        return;  // don't need to fetch favorites from TheMovieDB
+//                    }
+
+                    switch (displayMode) {
+                        case POPULAR:
+                            todo = fetchMovieListTask.FETCH_POPULAR;
+                            page_number = mTM.calculatePopularMoviesPageNumber() + 1;
+                            mTM.setPopularMoviesPageNumber(page_number);
+                            break;
+                        case TOP_RATED:
+                            page_number = mTM.calculateTopRatedMoviesPageNumber() + 1;
+                            mTM.setTopRatedMoviesPageNumber(page_number);
+                            todo = fetchMovieListTask.FETCH_TOP_RATED;
+                            break;
+                        case FAVORITES:
+                            return;  // don't need to fetch favorites from TheMovieDB
                     }
                     fetchMovieListTask.execute(todo, String.valueOf(page_number));
                     Snackbar.make(mRecyclerView, R.string.movie_detail_fragment_fetching_another_page, Snackbar.LENGTH_SHORT)
@@ -277,12 +327,12 @@ public class PopularMovieFragment extends Fragment
                 }
             }
         });
-        mDisplayMode = mTM.getDisplayMode();
+        displayMode = mTM.getDisplayMode();
 
         FetchMovieListTask fetchMovieListTask = new FetchMovieListTask(getActivity());
         String todo = null;
         int the_next_page_of_movies = 0;
-        if (mDisplayMode.contains(DISPLAY_POPULAR)) {
+        if (displayMode == POPULAR) {
             the_next_page_of_movies = mTM.calculatePopularMoviesPageNumber();
             if (the_next_page_of_movies == 0) {
                 the_next_page_of_movies = the_next_page_of_movies + 1;
@@ -315,19 +365,36 @@ public class PopularMovieFragment extends Fragment
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        Uri uri = null;
-        String sortOrder = null;
-        if (mDisplayMode == DISPLAY_POPULAR) {
-            sortOrder = MoviePopular.COLUMN_POPULAR_INDEX + " DESC";
-            uri = MoviePopular.buildPopularMoviesUri();
-        } else if (mDisplayMode == DISPLAY_TOP_RATED) {
-            sortOrder = MovieTopRated.COLUMN_TOP_RATED_INDEX + " DESC";
-            uri = MovieTopRated.buildTopRatedMoviesUri();
-        } else if (mDisplayMode == DISPLAY_FAVORITES) {
-            sortOrder = null;  // TODO: handle favorite sorting by add date
-            uri = MovieFavorites.buildFavoriteMoviesUri();
-        } else {
-            throw new RuntimeException(LOG_TAG + "display mode is out of bounds");
+        Uri uri;
+        String sortOrder;
+//        if (mDisplayMode == DISPLAY_POPULAR) {
+//            sortOrder = MoviePopular.COLUMN_POPULAR_INDEX + " DESC";
+//            uri = MoviePopular.buildPopularMoviesUri();
+//        } else if (mDisplayMode == DISPLAY_TOP_RATED) {
+//            sortOrder = MovieTopRated.COLUMN_TOP_RATED_INDEX + " DESC";
+//            uri = MovieTopRated.buildTopRatedMoviesUri();
+//        } else if (mDisplayMode == DISPLAY_FAVORITES) {
+//            sortOrder = null;  // TODO: handle favorite sorting by add date
+//            uri = MovieFavorites.buildFavoriteMoviesUri();
+//        } else {
+//            throw new RuntimeException(LOG_TAG + "display mode is out of bounds");
+//        }
+
+        switch (displayMode) {
+            case POPULAR:
+                sortOrder = MoviePopular.COLUMN_POPULAR_INDEX + " DESC";
+                uri = MoviePopular.buildPopularMoviesUri();
+                break;
+            case TOP_RATED:
+                sortOrder = MovieTopRated.COLUMN_TOP_RATED_INDEX + " DESC";
+                uri = MovieTopRated.buildTopRatedMoviesUri();
+                break;
+            case FAVORITES:
+                sortOrder = null;  // TODO: handle favorite sorting by add date
+                uri = MovieFavorites.buildFavoriteMoviesUri();
+                break;
+            default:
+                throw new RuntimeException(LOG_TAG + "display mode is out of bounds");
         }
 
         CursorLoader loader = new CursorLoader(
@@ -357,7 +424,7 @@ public class PopularMovieFragment extends Fragment
             mMovieAdapter.swapCursor(data);
             if (mPosition != RecyclerView.NO_POSITION) {
                 mRecyclerView.smoothScrollToPosition(mPosition);
-                mPosition = RecyclerView.NO_POSITION;
+//                mPosition = RecyclerView.NO_POSITION;
             }
             updateEmptyView();
             /*
@@ -409,25 +476,38 @@ public class PopularMovieFragment extends Fragment
         // When no item is selected, mPosition will be set to RecyclerView.NO_POSITION,
         // so check for that before storing.
 
-        outState.putString(DISPLAY_TAG, mDisplayMode);
+        outState.putInt(DISPLAY_TAG, displayMode);
         super.onSaveInstanceState(outState);
     }
 
-    public void updateDisplayMode(String mode) {
+    public void updateDisplayMode(@TrafficManager.DisplayMode int mode) {
         int old_position; // debugging
         GridLayoutManager mlm = (GridLayoutManager) mRecyclerView.getLayoutManager();
 
         // save old scroll position if any
         int position = mlm.findFirstVisibleItemPosition();
-        if (mDisplayMode.contains(DISPLAY_POPULAR)) {
-            mTM.setPopularPosition(position);
-        } else if (mDisplayMode.contains(DISPLAY_TOP_RATED)) {
-            mTM.setTopratedPosition(position);
-        } else if (mDisplayMode.contains(DISPLAY_FAVORITES)) {
-            mTM.setFavoritesPosition(position);
+
+//        if (mDisplayMode.contains(DISPLAY_POPULAR)) {
+//            mTM.setPopularPosition(position);
+//        } else if (mDisplayMode.contains(DISPLAY_TOP_RATED)) {
+//            mTM.setTopratedPosition(position);
+//        } else if (mDisplayMode.contains(DISPLAY_FAVORITES)) {
+//            mTM.setFavoritesPosition(position);
+//        }
+
+        switch (displayMode) {
+            case POPULAR:
+                mTM.setPopularPosition(position);
+                break;
+            case TOP_RATED:
+                mTM.setTopratedPosition(position);
+                break;
+            case FAVORITES:
+                mTM.setFavoritesPosition(position);
+                break;
         }
 
-        mDisplayMode = mode;
+        displayMode = mode;
         mTM.setDisplayMode(mode);
         getLoaderManager().restartLoader(LOADER_ID, null, this);
         String todo = null;
@@ -436,49 +516,54 @@ public class PopularMovieFragment extends Fragment
         /*
          * kickstart the movie download if necessary
          */
-        if (mDisplayMode.contains(DISPLAY_POPULAR)) {
-            do_click_on_item_zero = false;
-            position = mTM.getPopularPosition();
-            if (mTM.calculatePopularMoviesPageNumber() == 0) {
-                position = 0;  // adapter doesn't reset its own view on this mode change
-                do_click_on_item_zero = true;
-                FetchMovieListTask fetchMovieListTask = new FetchMovieListTask(getActivity());
-                mTM.setPopularMoviesPageNumber(1);
-                todo = fetchMovieListTask.FETCH_POPULAR;
-                fetchMovieListTask.execute(
-                        todo,
-                        "1");
-            } else if (position == RecyclerView.NO_POSITION) { // on startup first display will not have a position
-                position = 0;
-            }
-        } else if (mDisplayMode.contains(DISPLAY_TOP_RATED)) {
-            do_click_on_item_zero = false;
-            position = mTM.getTopratedPosition();
-            if (mTM.calculateTopRatedMoviesPageNumber() == 0) {
-                position = 0;
-                do_click_on_item_zero = true;
-                FetchMovieListTask fetchMovieListTask = new FetchMovieListTask(getActivity());
-                mTM.setTopRatedMoviesPageNumber(1);
-                todo = fetchMovieListTask.FETCH_TOP_RATED;
-                fetchMovieListTask.execute(
-                        todo,
-                        "1");
-            } else if (position == RecyclerView.NO_POSITION) {
-                position = 0;
-            }
-        } else if (mDisplayMode.contains(DISPLAY_FAVORITES)) {
-            do_click_on_item_zero = true;  // don't bother to try to scroll on favorites, do click on item 0
-            position = mTM.getFavoritesPosition();
-            if (position == RecyclerView.NO_POSITION) {
-                position = 0;
-            }
-        }
-        mPosition = position;
-        Log.i(LOG_TAG, "Change mode, old position = " + old_position + " new position = " + position);
-    }
 
-    public String getDisplayMode() {
-        return mDisplayMode;
+        switch (displayMode) {
+            case POPULAR:
+                do_click_on_item_zero = false;
+                position = mTM.getPopularPosition();
+                if (mTM.calculatePopularMoviesPageNumber() == 0) {
+                    position = 0;  // adapter doesn't reset its own view on this mode change
+                    do_click_on_item_zero = true;
+                    FetchMovieListTask fetchMovieListTask = new FetchMovieListTask(getActivity());
+                    mTM.setPopularMoviesPageNumber(1);
+                    todo = fetchMovieListTask.FETCH_POPULAR;
+                    fetchMovieListTask.execute(
+                            todo,
+                            "1");
+                } else if (position == RecyclerView.NO_POSITION) { // on startup first display will not have a position
+                    position = 0;
+                }
+                break;
+            case TOP_RATED:
+                do_click_on_item_zero = false;
+                position = mTM.getTopratedPosition();
+                if (mTM.calculateTopRatedMoviesPageNumber() == 0) {
+                    position = 0;
+                    do_click_on_item_zero = true;
+                    FetchMovieListTask fetchMovieListTask = new FetchMovieListTask(getActivity());
+                    mTM.setTopRatedMoviesPageNumber(1);
+                    todo = fetchMovieListTask.FETCH_TOP_RATED;
+                    fetchMovieListTask.execute(
+                            todo,
+                            "1");
+                } else if (position == RecyclerView.NO_POSITION) {
+                    position = 0;
+                }
+                break;
+            case FAVORITES:
+                do_click_on_item_zero = true;  // don't bother to try to scroll on favorites, do click on item 0
+                position = mTM.getFavoritesPosition();
+                if (position == RecyclerView.NO_POSITION) {
+                    position = 0;
+                }
+                break;
+        }
+    mPosition=position;
+    Log.i(LOG_TAG,"Change mode, old position = "+old_position+" new position = "+position);
+}
+
+    @TrafficManager.DisplayMode public int getDisplayMode() {
+        return displayMode;
     }
 
     /*
@@ -504,16 +589,26 @@ public class PopularMovieFragment extends Fragment
     public void onResume() {
         super.onResume();
 
-        String mode = mTM.getDisplayMode();
-        if (mode != null) {
-            mDisplayMode = mode;
-        }
-        if (mDisplayMode == DISPLAY_POPULAR) {
-            mPosition = mTM.getPopularPosition();
-        } else if (mDisplayMode == DISPLAY_TOP_RATED) {
-            mPosition = mTM.getTopratedPosition();
-        } else if (mDisplayMode == DISPLAY_FAVORITES) {
-            mPosition = mTM.getFavoritesPosition();
+        displayMode = mTM.getDisplayMode();
+
+//        if (mDisplayMode == DISPLAY_POPULAR) {
+//            mPosition = mTM.getPopularPosition();
+//        } else if (mDisplayMode == DISPLAY_TOP_RATED) {
+//            mPosition = mTM.getTopratedPosition();
+//        } else if (mDisplayMode == DISPLAY_FAVORITES) {
+//            mPosition = mTM.getFavoritesPosition();
+//        }
+
+        switch (displayMode) {
+            case POPULAR:
+                mPosition = mTM.getPopularPosition();
+                break;
+            case TOP_RATED:
+                mPosition = mTM.getTopratedPosition();
+                break;
+            case FAVORITES:
+                mPosition = mTM.getFavoritesPosition();
+                break;
         }
 
     }

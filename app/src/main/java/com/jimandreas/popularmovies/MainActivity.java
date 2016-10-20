@@ -16,6 +16,13 @@ import android.view.MenuItem;
 
 import com.jimandreas.popularmovies.utils.Utility;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.util.Vector;
+import static com.jimandreas.popularmovies.TrafficManager.FAVORITES;
+import static com.jimandreas.popularmovies.TrafficManager.POPULAR;
+import static com.jimandreas.popularmovies.TrafficManager.TOP_RATED;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, PopularMovieFragment.Callback {
 
@@ -141,16 +148,16 @@ public class MainActivity extends AppCompatActivity
         Boolean handled = true;
 
         if (id == R.id.popular_movies) {
-            setDisplayMode(PopularMovieFragment.DISPLAY_POPULAR);
+            setDisplayMode(POPULAR);
             setTitle(R.string.drawer_popular_movies);
             mTM.validateFavorites();
         } else if (id == R.id.highest_rated_movies) {
-            setDisplayMode(PopularMovieFragment.DISPLAY_TOP_RATED);
+            setDisplayMode(TOP_RATED);
             setTitle(R.string.drawer_top_rated);
             mTM.validateFavorites();
         } else if (id == R.id.favorite_movies) {
             if (mTM.numFavorites() > 0) {
-                setDisplayMode(PopularMovieFragment.DISPLAY_FAVORITES);
+                setDisplayMode(FAVORITES);
                 setTitle(R.string.drawer_favorites);
             } else {
                 showNoFavoritesSetDialog();
@@ -172,34 +179,49 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onPause() {
         super.onPause();
-        String display_mode = getDisplayMode();
+        @TrafficManager.DisplayMode int display_mode = getDisplayMode();
         mTM.setDisplayMode(display_mode);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        String display_mode = mTM.getDisplayMode();
-        if (display_mode != null) {
+        @TrafficManager.DisplayMode int display_mode = mTM.getDisplayMode();
+
             NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
-            if (display_mode.contains(PopularMovieFragment.DISPLAY_POPULAR)) {
+//            if (display_mode.contains(PopularMovieFragment.DISPLAY_POPULAR)) {
+//                setTitle(R.string.drawer_popular_movies);
+//                navigationView.setCheckedItem(R.id.popular_movies);
+//            } else if (display_mode.contains(PopularMovieFragment.DISPLAY_TOP_RATED)) {
+//                setTitle(R.string.drawer_top_rated);
+//                navigationView.setCheckedItem(R.id.highest_rated_movies);
+//            } else if (display_mode.contains(PopularMovieFragment.DISPLAY_FAVORITES)) {
+//                setTitle(R.string.drawer_favorites);
+//                navigationView.setCheckedItem(R.id.favorite_movies);
+//            }
+
+        switch (display_mode) {
+            case POPULAR:
                 setTitle(R.string.drawer_popular_movies);
                 navigationView.setCheckedItem(R.id.popular_movies);
-            } else if (display_mode.contains(PopularMovieFragment.DISPLAY_TOP_RATED)) {
+                break;
+            case TOP_RATED:
                 setTitle(R.string.drawer_top_rated);
                 navigationView.setCheckedItem(R.id.highest_rated_movies);
-            } else if (display_mode.contains(PopularMovieFragment.DISPLAY_FAVORITES)) {
+                break;
+            case FAVORITES:
                 setTitle(R.string.drawer_favorites);
                 navigationView.setCheckedItem(R.id.favorite_movies);
-            }
+                break;
         }
+
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        String display_mode = getDisplayMode();
-        outState.putString(DISPLAY_MODE, display_mode);
+        @TrafficManager.DisplayMode int display_mode = getDisplayMode();
+        outState.putInt(DISPLAY_MODE, display_mode);
         super.onSaveInstanceState(outState);
     }
 
@@ -225,7 +247,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public void setDisplayMode(String mode) {
+    public void setDisplayMode(@TrafficManager.DisplayMode int mode) {
         PopularMovieFragment frag = (PopularMovieFragment)
                 getSupportFragmentManager().findFragmentById(R.id.movie_fragment);
         if (frag != null) {
@@ -234,13 +256,14 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    public String getDisplayMode() {
+    @TrafficManager.DisplayMode
+    public int getDisplayMode() {
         PopularMovieFragment frag = (PopularMovieFragment)
                 getSupportFragmentManager().findFragmentById(R.id.movie_fragment);
         if (frag != null) {
             return( frag.getDisplayMode());
         }
-        return null;
+        return POPULAR;
     }
 
     /*

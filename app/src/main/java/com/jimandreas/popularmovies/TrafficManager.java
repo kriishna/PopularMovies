@@ -3,6 +3,7 @@ package com.jimandreas.popularmovies;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.support.annotation.IntDef;
 import android.util.Log;
 
 import com.jimandreas.popularmovies.data.MovieContract;
@@ -10,6 +11,8 @@ import com.jimandreas.popularmovies.data.MovieLoadDetails;
 import com.jimandreas.popularmovies.data.MovieLoadFavorites;
 import com.jimandreas.popularmovies.utils.Utility;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.util.HashSet;
 import java.util.Iterator;
 
@@ -45,18 +48,34 @@ public class TrafficManager {
     private static MovieLoadDetails mLoadDetails;
     private static Iterator mIterator;
 
-    /*
-     * hold the display mode flags
+    /**
+     * Modality of the app- which type of movies are displayed?
      */
+    public static final int POPULAR = 0;
+    public static final int TOP_RATED = 1;
+    public static final int FAVORITES = 2;
+    @IntDef( {POPULAR, TOP_RATED, FAVORITES})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface DisplayMode {}
 
-    private String mDisplayMode = "popular";
-
-    public String getDisplayMode() {
-        return mDisplayMode;
+    public void setDisplayMode(@DisplayMode int displayMode) {
+        mTMdisplayMode = displayMode;
     }
 
-    public void setDisplayMode(String mDisplayMode) {
-        this.mDisplayMode = mDisplayMode;
+    @TrafficManager.DisplayMode
+    int mTMdisplayMode = POPULAR;
+
+//    public String getDisplayMode() {
+//        return mDisplayMode;
+//    }
+//
+//    public void setDisplayMode(String mDisplayMode) {
+//        this.mDisplayMode = mDisplayMode;
+//    }
+
+    @TrafficManager.DisplayMode
+    public int getDisplayMode() {
+        return mTMdisplayMode;
     }
 
     private String mDetailDisplayMode = null;
