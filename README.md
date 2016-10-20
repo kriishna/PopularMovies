@@ -6,6 +6,12 @@ This application is submitted by Jim Andreas as the final project to compete the
 
 https://www.udacity.com/course/developing-android-apps--ud853
 
+## Current status / updates:  :movie_camera:
+
+ * Switched from GridLayout to Constraints on movie detail activity
+ * Reworked code to use annotations for app state instead of strings (much cleaner)
+ * Added release key generation (see below)
+
 ## Building this application with Android Studio - prerequisite
 
 <b>You will need an API key from TheMovieDB.org.  For this app, add your key to your grade.properties file:</b>
