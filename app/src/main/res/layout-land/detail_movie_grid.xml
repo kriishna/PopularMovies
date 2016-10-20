@@ -27,23 +27,25 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textAlignment="gravity"
         android:gravity="left"
-        tools:layout_constraintTop_creator="1"
         android:layout_marginStart="5dp"
         tools:layout_constraintLeft_creator="1"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="5dp" />
+        app:layout_constraintTop_toTopOf="@+id/movie_detail_favorite_imageviewbutton"
+        android:layout_marginLeft="5dp"
+        tools:ignore="RtlHardcoded"
+        app:layout_constraintBottom_toBottomOf="@+id/movie_detail_favorite_imageviewbutton" />
 
     <ImageView
+        android:layout_width="100dp"
+        android:layout_height="150dp"
         android:id="@+id/movie_detail_poster_image"
         tools:background="@drawable/sample_185w_277h"
+        android:layout_marginTop="24dp"
         app:layout_constraintTop_toBottomOf="@+id/movie_detail_title"
         android:layout_marginStart="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="8dp"
-        android:layout_width="200dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="24dp" />
+        tools:ignore="ContentDescription" />
 
     <TextView
         tools:text="Quo usque tandem abutere, Catilina, patientia nostra? quam diu etiam furor iste tuus nos eludet? "
@@ -52,15 +54,15 @@
         android:fontFamily="sans-serif"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="24dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="16dp"
+        android:layout_marginRight="24dp"
         app:layout_constraintVertical_bias="0.13"
-        app:layout_constraintHorizontal_bias="0.02"
-        android:layout_marginStart="8dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toTopOf="@+id/movie_detail_poster_image"
+        android:layout_marginStart="80dp"
         app:layout_constraintLeft_toRightOf="@+id/movie_detail_poster_image"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintTop_toTopOf="@+id/movie_detail_poster_image" />
+        android:layout_marginLeft="80dp" />
 
     <!--
        ***   Trailers - woohoo! ****
@@ -78,10 +80,12 @@
         android:id="@+id/movie_detail_favorite_imageviewbutton"
         android:clickable="true"
         tools:src="@drawable/ic_favorite_selected"
-        tools:layout_editor_absoluteY="3dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="8dp"
         app:layout_constraintLeft_toRightOf="@+id/movie_detail_title"
-        android:layout_marginLeft="32dp" />
+        android:layout_marginLeft="8dp"
+        app:layout_constraintHorizontal_bias="0.03"
+        tools:ignore="ContentDescription"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
         android:indeterminate="true"
@@ -95,20 +99,20 @@
         tools:layout_constraintLeft_creator="1"
         app:layout_constraintTop_toTopOf="@+id/movie_detail_favorite_imageviewbutton"
         app:layout_constraintLeft_toRightOf="@+id/movie_detail_favorite_imageviewbutton"
-        android:layout_marginLeft="8dp" />
+        android:layout_marginLeft="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/movie_detail_favorite_imageviewbutton" />
 
 
     <TextView
 
         android:fontFamily="sans-serif"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         tools:text="120 minutes"
         android:id="@+id/movie_detail_runningtime"
         android:gravity="center_vertical"
         android:layout_width="wrap_content"
         app:layout_constraintLeft_toLeftOf="@+id/movie_detail_year"
-        android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@+id/movie_detail_year" />
 
 
@@ -120,7 +124,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        tools:ignore="ContentDescription"
+        android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@+id/movie_detail_poster_image" />
 
     <TextView
@@ -140,29 +145,30 @@
     <TextView
 
         android:fontFamily="sans-serif"
-        android:layout_height="35dp"
+        android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         tools:text="Year - Mo - Day"
         android:id="@+id/movie_detail_year"
         android:layout_width="123dp"
         android:gravity="left|center_vertical"
         app:layout_constraintLeft_toLeftOf="@+id/vote_star"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/vote_star" />
+        app:layout_constraintTop_toBottomOf="@+id/vote_star"
+        tools:ignore="RtlHardcoded" />
 
 
     <TextView
         android:visibility="gone"
         tools:visibility="visible"
         android:fontFamily="sans-serif"
-        android:layout_height="31dp"
+        android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/movie_detail_trailers"
         android:id="@+id/movie_detail_trailers"
         android:layout_width="129dp"
-        tools:layout_editor_absoluteX="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/movie_detail_runningtime" />
+        app:layout_constraintTop_toBottomOf="@+id/movie_detail_runningtime"
+        android:layout_marginStart="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="8dp" />
 
     <ImageButton
         android:visibility="gone"
@@ -173,11 +179,12 @@
         android:src="@android:drawable/ic_media_play"
         android:clickable="true"
         android:background="?android:selectableItemBackground"
-        android:layout_marginTop="24dp"
-        app:layout_constraintTop_toBottomOf="@+id/movie_detail_trailers"
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="16dp" />
+        android:layout_marginLeft="16dp"
+        app:layout_constraintTop_toTopOf="@+id/movie_detail_trailer1"
+        app:layout_constraintBottom_toBottomOf="@+id/movie_detail_trailer1"
+        tools:ignore="ContentDescription" />
 
     <ImageButton
         android:visibility="gone"
@@ -188,13 +195,11 @@
         android:src="@android:drawable/ic_media_play"
         android:clickable="true"
         android:background="?android:selectableItemBackground"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        app:layout_constraintRight_toRightOf="@+id/movie_detail_trailer_play_button"
-        app:layout_constraintTop_toBottomOf="@+id/movie_detail_trailer_play_button"
         tools:layout_constraintLeft_creator="1"
         app:layout_constraintLeft_toLeftOf="@+id/movie_detail_trailer_play_button"
-        android:layout_marginTop="24dp" />
+        app:layout_constraintTop_toTopOf="@+id/movie_detail_trailer2"
+        app:layout_constraintBottom_toBottomOf="@+id/movie_detail_trailer2"
+        tools:ignore="ContentDescription" />
 
     <ImageButton
         android:visibility="gone"
@@ -205,18 +210,15 @@
         android:src="@android:drawable/ic_media_play"
         android:clickable="true"
         android:background="?android:selectableItemBackground"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        app:layout_constraintRight_toRightOf="@+id/movie_detail_trailer_play_button2"
-        app:layout_constraintTop_toBottomOf="@+id/movie_detail_trailer_play_button2"
-        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintTop_toTopOf="@+id/movie_detail_trailer3"
+        app:layout_constraintBottom_toBottomOf="@+id/movie_detail_trailer3"
         app:layout_constraintLeft_toLeftOf="@+id/movie_detail_trailer_play_button2"
-        android:layout_marginTop="24dp" />
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:visibility="gone"
         tools:visibility="visible"
-        android:layout_height="32dp"
+        android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
         android:textAppearance="?android:attr/textAppearanceMedium"
         tools:text="Trailer 1 name here"
@@ -225,15 +227,15 @@
         android:background="?android:selectableItemBackground"
         android:gravity="center_vertical"
         android:layout_width="0dp"
-        tools:layout_constraintLeft_creator="1"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginRight="16dp"
         tools:layout_constraintRight_creator="1"
-        android:layout_marginStart="32dp"
-        app:layout_constraintLeft_toLeftOf="@+id/movie_detail_trailer_play_button"
-        android:layout_marginLeft="32dp"
-        app:layout_constraintTop_toTopOf="@+id/movie_detail_trailer_play_button" />
+        android:layout_marginStart="8dp"
+        app:layout_constraintLeft_toRightOf="@+id/movie_detail_trailer_play_button"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/movie_detail_trailers" />
 
     <TextView
         android:visibility="gone"
@@ -246,50 +248,52 @@
         android:clickable="true"
         android:background="?android:selectableItemBackground"
         android:layout_width="0dp"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="@+id/movie_detail_trailer1"
-        android:layout_height="32dp"
-        app:layout_constraintTop_toTopOf="@+id/movie_detail_trailer_play_button2"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="16dp" />
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintLeft_toRightOf="@+id/movie_detail_trailer_play_button2"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/movie_detail_trailer1" />
 
     <TextView
         android:visibility="gone"
         tools:visibility="visible"
         android:gravity="center_vertical"
-        android:layout_height="32dp"
+        android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         tools:text="Trailer 3 name here"
         android:id="@+id/movie_detail_trailer3"
         android:clickable="true"
         android:background="?android:selectableItemBackground"
         android:layout_width="0dp"
-        app:layout_constraintTop_toTopOf="@+id/movie_detail_trailer_play_button3"
         android:layout_marginStart="8dp"
         app:layout_constraintLeft_toRightOf="@+id/movie_detail_trailer_play_button3"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginRight="16dp"
-        app:layout_constraintHorizontal_bias="0.33" />
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/movie_detail_trailer2" />
 
     <TextView
         android:visibility="gone"
         tools:visibility="visible"
         android:fontFamily="sans-serif"
-        android:layout_height="wrap_content"
+        android:layout_height="32dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/movie_detail_reviews"
         android:id="@+id/movie_detail_reviews"
         android:layout_width="wrap_content"
-        tools:layout_constraintTop_creator="1"
-        app:layout_constraintTop_toBottomOf="@+id/movie_detail_trailer_play_button3"
         android:gravity="left"
-        android:layout_marginTop="16dp"
         android:layout_marginStart="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="8dp" />
+        android:layout_marginLeft="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/movie_detail_trailer3"
+        android:layout_marginTop="8dp"
+        tools:ignore="RtlHardcoded" />
 
     <ImageButton
         android:visibility="gone"
@@ -300,11 +304,12 @@
         android:src="@android:drawable/ic_media_play"
         android:clickable="true"
         android:background="?android:selectableItemBackground"
-        android:layout_marginTop="24dp"
-        app:layout_constraintTop_toBottomOf="@+id/movie_detail_reviews"
+        app:layout_constraintTop_toTopOf="@+id/movie_review1"
+        app:layout_constraintBottom_toBottomOf="@+id/movie_review1"
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="16dp" />
+        android:layout_marginLeft="16dp"
+        tools:ignore="ContentDescription" />
 
     <ImageButton
         android:visibility="gone"
@@ -315,9 +320,10 @@
         android:src="@android:drawable/ic_media_play"
         android:clickable="true"
         android:background="?android:selectableItemBackground"
-        app:layout_constraintTop_toBottomOf="@+id/play_rev1"
-        android:layout_marginTop="16dp"
-        app:layout_constraintLeft_toLeftOf="@+id/play_rev1" />
+        app:layout_constraintLeft_toLeftOf="@+id/play_rev1"
+        app:layout_constraintTop_toTopOf="@+id/movie_review2"
+        app:layout_constraintBottom_toBottomOf="@+id/movie_review2"
+        tools:ignore="ContentDescription" />
 
     <ImageButton
         android:visibility="gone"
@@ -328,14 +334,15 @@
         android:src="@android:drawable/ic_media_play"
         android:clickable="true"
         android:background="?android:selectableItemBackground"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/play_rev2"
-        app:layout_constraintLeft_toLeftOf="@+id/play_rev2" />
+        app:layout_constraintLeft_toLeftOf="@+id/play_rev2"
+        app:layout_constraintTop_toTopOf="@+id/movie_review3"
+        app:layout_constraintBottom_toBottomOf="@+id/movie_review3"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:visibility="gone"
         tools:visibility="visible"
-        android:layout_height="32dp"
+        android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
         android:textAppearance="?android:attr/textAppearanceMedium"
         tools:text="Review1 author name here"
@@ -347,17 +354,18 @@
         android:layout_marginStart="8dp"
         app:layout_constraintLeft_toRightOf="@+id/play_rev1"
         android:layout_marginLeft="8dp"
-        app:layout_constraintTop_toTopOf="@+id/play_rev1"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginRight="16dp"
         tools:layout_constraintRight_creator="1"
-        tools:layout_constraintLeft_creator="1" />
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/movie_detail_reviews" />
 
     <TextView
         android:visibility="gone"
         tools:visibility="visible"
-        android:layout_height="32dp"
+        android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
         android:textAppearance="?android:attr/textAppearanceMedium"
         tools:text="Review1 author name here"
@@ -366,13 +374,14 @@
         android:background="?android:selectableItemBackground"
         android:gravity="center_vertical"
         android:layout_width="0dp"
-        app:layout_constraintTop_toTopOf="@+id/play_rev2"
         android:layout_marginStart="8dp"
         app:layout_constraintLeft_toRightOf="@+id/play_rev2"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="16dp" />
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/movie_review1" />
 
     <TextView
         android:visibility="gone"
@@ -386,14 +395,15 @@
         android:gravity="center_vertical"
         android:layout_width="0dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_height="32dp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintTop_toTopOf="@+id/play_rev3"
+        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_bias="0.54"
         android:layout_marginStart="8dp"
         app:layout_constraintLeft_toRightOf="@+id/play_rev3"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp" />
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/movie_review2" />
 
 
 </android.support.constraint.ConstraintLayout>
