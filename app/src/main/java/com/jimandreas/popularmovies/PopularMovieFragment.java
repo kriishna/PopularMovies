@@ -39,7 +39,6 @@ import static com.jimandreas.popularmovies.TrafficManager.FAVORITES;
 import static com.jimandreas.popularmovies.TrafficManager.POPULAR;
 import static com.jimandreas.popularmovies.TrafficManager.TOP_RATED;
 
-@SuppressWarnings("ALL")
 public class PopularMovieFragment extends Fragment
         implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -183,9 +182,6 @@ public class PopularMovieFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-//        mRecyclerView = (RecyclerView) inflater.inflate(
-//                R.layout.fragment_movie_popular, container, false);
-
         View rootView = inflater.inflate(R.layout.fragment_main_base, container, false);
 
         // Get a reference to the RecyclerView, and attach this adapter to it.
@@ -282,6 +278,7 @@ public class PopularMovieFragment extends Fragment
                 if (offset + height >= range) {
 
                     // check for network connectivity
+
                     if (!Utility.isNetworkAvailable(getContext())) {
                         Snackbar.make(mRecyclerView, R.string.movie_detail_fragment_no_connection, Snackbar.LENGTH_SHORT)
                                 .setAction("Action", null).show();
@@ -291,17 +288,6 @@ public class PopularMovieFragment extends Fragment
                     int page_number = 1;
                     if (EXTRA_VERBOSE) Log.d(LOG_TAG, "**** time to get more data!!");
                     FetchMovieListTask fetchMovieListTask = new FetchMovieListTask(getActivity());
-//                    if (mDisplayMode.contains(DISPLAY_POPULAR)) {
-//                        todo = fetchMovieListTask.FETCH_POPULAR;
-//                        page_number = mTM.calculatePopularMoviesPageNumber() + 1;
-//                        mTM.setPopularMoviesPageNumber(page_number);
-//                    } else if (mDisplayMode.contains(DISPLAY_TOP_RATED)) {
-//                        page_number = mTM.calculateTopRatedMoviesPageNumber() + 1;
-//                        mTM.setTopRatedMoviesPageNumber(page_number);
-//                        todo = fetchMovieListTask.FETCH_TOP_RATED;
-//                    } else if (mDisplayMode.contains(DISPLAY_FAVORITES)) {
-//                        return;  // don't need to fetch favorites from TheMovieDB
-//                    }
 
                     switch (displayMode) {
                         case POPULAR:
@@ -327,7 +313,7 @@ public class PopularMovieFragment extends Fragment
 
         FetchMovieListTask fetchMovieListTask = new FetchMovieListTask(getActivity());
         String todo = null;
-        int the_next_page_of_movies = 0;
+        int the_next_page_of_movies;
         if (displayMode == POPULAR) {
             the_next_page_of_movies = mTM.calculatePopularMoviesPageNumber();
             if (the_next_page_of_movies == 0) {
@@ -348,8 +334,6 @@ public class PopularMovieFragment extends Fragment
                     todo,
                     Integer.toString(the_next_page_of_movies));
         }
-
-
         return rootView;
     }
 
@@ -406,10 +390,10 @@ public class PopularMovieFragment extends Fragment
             } while (data.moveToNext());
 
             mMovieAdapter.swapCursor(data);
-            if (mPosition != RecyclerView.NO_POSITION) {
-                mRecyclerView.smoothScrollToPosition(mPosition);
-//                mPosition = RecyclerView.NO_POSITION;
-            }
+//            if (mPosition != RecyclerView.NO_POSITION) {
+//                mRecyclerView.smoothScrollToPosition(mPosition);
+////                mPosition = RecyclerView.NO_POSITION;
+//            }
             updateEmptyView();
             /*
              * interesting code left over from the Advanced version of sunshine -
@@ -471,14 +455,6 @@ public class PopularMovieFragment extends Fragment
         // save old scroll position if any
         int position = mlm.findFirstVisibleItemPosition();
 
-//        if (mDisplayMode.contains(DISPLAY_POPULAR)) {
-//            mTM.setPopularPosition(position);
-//        } else if (mDisplayMode.contains(DISPLAY_TOP_RATED)) {
-//            mTM.setTopratedPosition(position);
-//        } else if (mDisplayMode.contains(DISPLAY_FAVORITES)) {
-//            mTM.setFavoritesPosition(position);
-//        }
-
         switch (displayMode) {
             case POPULAR:
                 mTM.setPopularPosition(position);
@@ -494,7 +470,7 @@ public class PopularMovieFragment extends Fragment
         displayMode = mode;
         mTM.setDisplayMode(mode);
         getLoaderManager().restartLoader(LOADER_ID, null, this);
-        String todo = null;
+        String todo;
         old_position = position;
 
         /*
@@ -588,8 +564,3 @@ public class PopularMovieFragment extends Fragment
         }
     }
 }
-
-
-
-
-

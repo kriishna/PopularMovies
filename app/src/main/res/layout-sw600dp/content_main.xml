@@ -45,7 +45,7 @@
          abc_list_item_padding_horizontal_material -->
 
 
-    <android.support.v7.widget.Space
+    <android.support.v4.widget.Space
         android:id="@+id/cardviewAligner"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

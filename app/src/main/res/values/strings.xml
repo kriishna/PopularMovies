@@ -27,7 +27,7 @@
     <string name="drawer_help_url">http://www.jimandreas.com/2015/11/popular-movies-help-page.html</string>
     <string name="drawer_section_whodunnit">For more information:</string>
     <string name="drawer_whodunnit">Github source code</string>
-    <string name="drawer_whodunnit_url">http://plus.google.com/+JimAndreas</string>
+    <string name="drawer_whodunnit_url">http://github.com/jimandreas/PopularMovies</string>
 
     <!-- menu items and toolbar -->
     <string name="dialog_no_favorites_set">You have not yet chosen any favorite movies.  Press the heart button when you like a movie and want to save it to your favorites list.</string>
