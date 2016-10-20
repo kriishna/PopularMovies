@@ -1,6 +1,5 @@
 package com.jimandreas.popularmovies;
 
-import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -22,12 +21,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
-import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.jimandreas.popularmovies.data.MovieContract;
 import com.jimandreas.popularmovies.data.MovieContract.MovieFavorites;
 import com.jimandreas.popularmovies.data.MovieContract.MoviePopular;
 import com.jimandreas.popularmovies.data.MovieContract.MovieTopRated;
@@ -36,8 +33,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.Iterator;
-
 
 public class MovieDetailFragment extends Fragment
         implements LoaderManager.LoaderCallbacks<Cursor> {
@@ -193,7 +188,7 @@ public class MovieDetailFragment extends Fragment
         // cache up all the Trailer and Review UX views - 
         //   these will get toggled into visibility based on their 
         // rather random presence in TheMovieDB...
-        
+
         mMDTrailers = (TextView) rootView.findViewById(R.id.movie_detail_trailers);
         mMDPlay1 = (ImageView) rootView.findViewById(R.id.movie_detail_trailer_play_button);
         mMDPlay2 = (ImageView) rootView.findViewById(R.id.movie_detail_trailer_play_button2);
@@ -209,7 +204,7 @@ public class MovieDetailFragment extends Fragment
         mMDRev1 = (ImageView) rootView.findViewById(R.id.play_rev1);
         mMDRev2 = (ImageView) rootView.findViewById(R.id.play_rev2);
         mMDRev3 = (ImageView) rootView.findViewById(R.id.play_rev3);
-        
+
         mMovieReview1 = (TextView) rootView.findViewById(R.id.movie_review1);
         mMovieReview2 = (TextView) rootView.findViewById(R.id.movie_review2);
         mMovieReview3 = (TextView) rootView.findViewById(R.id.movie_review3);

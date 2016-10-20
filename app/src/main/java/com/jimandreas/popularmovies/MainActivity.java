@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -16,9 +17,6 @@ import android.view.MenuItem;
 
 import com.jimandreas.popularmovies.utils.Utility;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.util.Vector;
 import static com.jimandreas.popularmovies.TrafficManager.FAVORITES;
 import static com.jimandreas.popularmovies.TrafficManager.POPULAR;
 import static com.jimandreas.popularmovies.TrafficManager.TOP_RATED;
@@ -28,10 +26,10 @@ public class MainActivity extends AppCompatActivity
 
     private final String LOG_TAG = TrafficManager.class.getSimpleName();
     private static final String DETAILFRAGMENT_TAG = "DFTAG";
-    public static String DISPLAY_MODE = "displaymode";
+    public static final String DISPLAY_MODE = "displaymode";
 
     private boolean mTwoPane;
-    private TrafficManager mTM = TrafficManager.getInstance(this);
+    private final TrafficManager mTM = TrafficManager.getInstance(this);
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +50,7 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         /**
@@ -77,6 +75,7 @@ public class MainActivity extends AppCompatActivity
             }
         } else {
             mTwoPane = false;
+            //noinspection ConstantConditions
             getSupportActionBar().setElevation(0f);
 //            if (savedInstanceState != null) {
 //                String display_mode = savedInstanceState.getString(DISPLAY_MODE);
@@ -121,6 +120,7 @@ public class MainActivity extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
 //        if (id == R.id.action_refresh) {
@@ -142,10 +142,9 @@ public class MainActivity extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        Boolean handled = true;
 
         if (id == R.id.popular_movies) {
             setDisplayMode(POPULAR);
@@ -163,17 +162,17 @@ public class MainActivity extends AppCompatActivity
                 showNoFavoritesSetDialog();
                 return false;
             }
-        }  else if (id == R.id.nav_help) {
+        } else if (id == R.id.nav_help) {
             Utility.viewUrl(getString(R.string.drawer_help_url), this);
         } else if (id == R.id.nav_about) {
             Utility.viewUrl(getString(R.string.drawer_info_url), this);
-        }  else if (id == R.id.nav_whodunnit) {
+        } else if (id == R.id.nav_whodunnit) {
             Utility.viewUrl(getString(R.string.drawer_whodunnit_url), this);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-        return handled;
+        return true;
     }
 
     @Override
@@ -188,18 +187,7 @@ public class MainActivity extends AppCompatActivity
         super.onResume();
         @TrafficManager.DisplayMode int display_mode = mTM.getDisplayMode();
 
-            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-
-//            if (display_mode.contains(PopularMovieFragment.DISPLAY_POPULAR)) {
-//                setTitle(R.string.drawer_popular_movies);
-//                navigationView.setCheckedItem(R.id.popular_movies);
-//            } else if (display_mode.contains(PopularMovieFragment.DISPLAY_TOP_RATED)) {
-//                setTitle(R.string.drawer_top_rated);
-//                navigationView.setCheckedItem(R.id.highest_rated_movies);
-//            } else if (display_mode.contains(PopularMovieFragment.DISPLAY_FAVORITES)) {
-//                setTitle(R.string.drawer_favorites);
-//                navigationView.setCheckedItem(R.id.favorite_movies);
-//            }
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
         switch (display_mode) {
             case POPULAR:
@@ -261,7 +249,7 @@ public class MainActivity extends AppCompatActivity
         PopularMovieFragment frag = (PopularMovieFragment)
                 getSupportFragmentManager().findFragmentById(R.id.movie_fragment);
         if (frag != null) {
-            return( frag.getDisplayMode());
+            return (frag.getDisplayMode());
         }
         return POPULAR;
     }

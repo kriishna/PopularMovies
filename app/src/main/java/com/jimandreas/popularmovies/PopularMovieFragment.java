@@ -12,8 +12,6 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.IntDef;
-import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
@@ -35,15 +33,13 @@ import com.jimandreas.popularmovies.data.MovieContract.MoviePopular;
 import com.jimandreas.popularmovies.data.MovieContract.MovieTopRated;
 import com.jimandreas.popularmovies.utils.Utility;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.util.Vector;
 
-import static android.R.attr.mode;
 import static com.jimandreas.popularmovies.TrafficManager.FAVORITES;
 import static com.jimandreas.popularmovies.TrafficManager.POPULAR;
 import static com.jimandreas.popularmovies.TrafficManager.TOP_RATED;
 
+@SuppressWarnings("ALL")
 public class PopularMovieFragment extends Fragment
         implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -169,7 +165,7 @@ public class PopularMovieFragment extends Fragment
         /**
          * DetailFragmentCallback for when an item has been selected.
          */
-        public void onItemSelected(Uri wantMovieDetailsFromThisUri);
+        void onItemSelected(Uri wantMovieDetailsFromThisUri);
     }
 
 
@@ -367,18 +363,6 @@ public class PopularMovieFragment extends Fragment
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         Uri uri;
         String sortOrder;
-//        if (mDisplayMode == DISPLAY_POPULAR) {
-//            sortOrder = MoviePopular.COLUMN_POPULAR_INDEX + " DESC";
-//            uri = MoviePopular.buildPopularMoviesUri();
-//        } else if (mDisplayMode == DISPLAY_TOP_RATED) {
-//            sortOrder = MovieTopRated.COLUMN_TOP_RATED_INDEX + " DESC";
-//            uri = MovieTopRated.buildTopRatedMoviesUri();
-//        } else if (mDisplayMode == DISPLAY_FAVORITES) {
-//            sortOrder = null;  // TODO: handle favorite sorting by add date
-//            uri = MovieFavorites.buildFavoriteMoviesUri();
-//        } else {
-//            throw new RuntimeException(LOG_TAG + "display mode is out of bounds");
-//        }
 
         switch (displayMode) {
             case POPULAR:
@@ -591,14 +575,6 @@ public class PopularMovieFragment extends Fragment
 
         displayMode = mTM.getDisplayMode();
 
-//        if (mDisplayMode == DISPLAY_POPULAR) {
-//            mPosition = mTM.getPopularPosition();
-//        } else if (mDisplayMode == DISPLAY_TOP_RATED) {
-//            mPosition = mTM.getTopratedPosition();
-//        } else if (mDisplayMode == DISPLAY_FAVORITES) {
-//            mPosition = mTM.getFavoritesPosition();
-//        }
-
         switch (displayMode) {
             case POPULAR:
                 mPosition = mTM.getPopularPosition();
@@ -610,7 +586,6 @@ public class PopularMovieFragment extends Fragment
                 mPosition = mTM.getFavoritesPosition();
                 break;
         }
-
     }
 }
 
