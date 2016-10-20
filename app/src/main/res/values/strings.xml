@@ -25,8 +25,8 @@
     <string name="drawer_info">Info and Credits</string>
     <string name="drawer_info_url">http://www.jimandreas.com/2015/11/this-android-application-uses-tmdb-api.html</string>
     <string name="drawer_help_url">http://www.jimandreas.com/2015/11/popular-movies-help-page.html</string>
-    <string name="drawer_section_whodunnit">Audacity Final Project by:</string>
-    <string name="drawer_whodunnit">Audacity Final Project by:</string>
+    <string name="drawer_section_whodunnit">For more information:</string>
+    <string name="drawer_whodunnit">Github source code</string>
     <string name="drawer_whodunnit_url">http://plus.google.com/+JimAndreas</string>
 
     <!-- menu items and toolbar -->

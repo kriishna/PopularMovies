@@ -8,7 +8,7 @@ https://www.udacity.com/course/developing-android-apps--ud853
 
 ## Building this application with Android Studio - prerequisite
 
-You will need an API key from TheMovieDB.org.  For this app, add your key to your grade.properties file:
+<b>You will need an API key from TheMovieDB.org.  For this app, add your key to your grade.properties file:</b>
 
     /Users/Myname/.gradle/gradle.properties
 
@@ -16,15 +16,7 @@ with this identifier (edit in your key between the quotes):
 
      TheMovieDbApiToken="12341234123412341234"
 
-## DISCLAIMER
-
-**THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.**
+<b>For a release build, you need to add a `signing.properties` file to the gradle folder. See this guide: http://gist.github.com/gabrielemariotti/6856974</b>
 
 ## Design comments - UX and Architecture
 
@@ -135,7 +127,6 @@ requires posting this notice:
 > Logos & Attribution
 >- As per our terms of use, every application that uses our data or images is required to properly attribute TMDb as the source. Below you will find some logos you can use within your application.
 ![TheOpenMovieDB Logo](https://assets.tmdb.org/images/logos/var_1_1_PoweredByTMDB_Blk_Logo_Antitled.png)
-
 
 ## Icons
 
