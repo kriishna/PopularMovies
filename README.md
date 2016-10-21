@@ -1,16 +1,22 @@
 # Popular Movies Android Application
 
-This application is submitted by Jim Andreas as the final project to compete the requirements of the Udacity course:
+## Play store - downloadable test app - try it here:
 
-**Developing Android Apps - Android Fundamentals**
-
-https://www.udacity.com/course/developing-android-apps--ud853
+https://play.google.com/store/apps/details?id=com.jimandreas.popularmovies
 
 ## Current status / updates:  :movie_camera:
 
  * Switched from GridLayout to Constraints on movie detail activity
  * Reworked code to use annotations for app state instead of strings (much cleaner)
  * Added release key generation (see below)
+
+## History
+
+This application is submitted by Jim Andreas as the final project to compete the requirements of the Udacity course:
+
+**Developing Android Apps - Android Fundamentals**
+
+https://www.udacity.com/course/developing-android-apps--ud853
 
 ## Building this application with Android Studio - prerequisite
 
