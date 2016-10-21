@@ -12,7 +12,7 @@ https://play.google.com/store/apps/details?id=com.jimandreas.popularmovies
 
 ## History
 
-This application is submitted by Jim Andreas as the final project to compete the requirements of the Udacity course:
+This application was submitted by Jim Andreas as the final project to compete the requirements of the Udacity course:
 
 **Developing Android Apps - Android Fundamentals**
 
@@ -32,8 +32,7 @@ with this identifier (edit in your key between the quotes):
 
 ## Design comments - UX and Architecture
 
-The menu is implemented in a [Navigation Drawer](https://www.google.de/design/spec/patterns/navigation-drawer.html).   
-Here is a screenshot of the Navigation Drawer:
+The menu is implemented in a [Navigation Drawer](https://www.google.com/design/spec/patterns/navigation-drawer.html):
 
 ![Navigation Drawer Screenshot](./Screenshots/screenshot_nav_drawer.PNG)
 
@@ -47,7 +46,8 @@ to manage an SQLite database.  An AsyncTask class fetches the JSON data from The
 manner as Sunshine.
 
 A RecyclerView is implemented to display the movie thumbnails, rating and favorite status.   The detail view was painfully 
-implemented using the GridLayout class for various sizes and orientations of devices.
+implemented using the GridLayout class for various sizes and orientations of devices.   The detail view has since been reworked
+using the Constraint system available in Android Studio 2.2.
 
 A singleton class, the TrafficManager, was developed to hold application state information across the app lifecycle 
 for presentation continuity and download page management.  This helped to make for a more seamless user experience as there
@@ -63,6 +63,8 @@ Just the tablet landscape screenshot for now.   If you scroll to end of this Mar
 ![Tablet Landscape Screenshot](./Screenshots/screenshot_tablet_landscape.png)
 
 ## Criteria
+
+The app design checks off the following requirements that were demanded by the Udacity class project:
 
 **User Interface - Layout**
 
@@ -111,7 +113,9 @@ http://udacity.github.io/android-nanodegree-guidelines/core.html
 
 ### License and Disclaimers
 
-Portions of this page are modifications based on work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License
+Portions of this page are modifications based on work created and
+shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License.
+See also the LICENSE.txt file at the top level of the repo.
 
 ** and **
 
