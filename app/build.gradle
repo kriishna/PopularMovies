@@ -5,17 +5,17 @@ apply plugin: 'com.android.application'
 // http://stackoverflow.com/questions/4616095/how-to-get-the-build-version-number-of-your-android-application
 def versionMajor = 1
 def versionMinor = 1  //  constraint layout for movie detail now
-def versionPatch = 2
-def versionBuild = 10 // bump for dogfood builds, public betas, etc.
+def versionPatch = 4
+def versionBuild = 12 // bump for dogfood builds, public betas, etc.
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    compileSdkVersion 24
+    buildToolsVersion "24.0.3"
 
     defaultConfig {
         applicationId "com.jimandreas.popularmovies"
         minSdkVersion 16
-        targetSdkVersion 25
+        targetSdkVersion 24
 
         versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
@@ -60,12 +60,13 @@ if (propFile.canRead()) {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:25.0.0'
-    compile 'com.android.support:support-compat:25.0.0'
-    compile 'com.android.support:design:25.0.0'
-    compile 'com.android.support:gridlayout-v7:25.0.0'
-    compile 'com.android.support:cardview-v7:25.0.0'
-    compile 'com.android.support:recyclerview-v7:25.0.0'
+    compile 'com.android.support:appcompat-v7:24.+'
+    compile 'com.android.support:support-compat:24.+'
+    compile 'com.android.support:design:24.+'
+    compile 'com.android.support:gridlayout-v7:24.+'
+    compile 'com.android.support:cardview-v7:24.+'
+    compile 'com.android.support:recyclerview-v7:24.+'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    //compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha9'
 }

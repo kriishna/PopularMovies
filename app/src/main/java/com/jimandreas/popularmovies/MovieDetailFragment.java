@@ -25,14 +25,33 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+//import com.bumptech.glide.Glide;
 import com.jimandreas.popularmovies.data.MovieContract.MovieFavorites;
 import com.jimandreas.popularmovies.data.MovieContract.MoviePopular;
 import com.jimandreas.popularmovies.data.MovieContract.MovieTopRated;
 import com.jimandreas.popularmovies.utils.Utility;
 import com.squareup.picasso.Picasso;
+//import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+
+/**
+ *  For more information on the architecture used here - the
+ *  Advanced Android video sequence hosted by Udacity:
+ *
+ *  http://www.youtube.com/watch?v=u1webEsoU6w&index=65&list=PLAwxTw4SYaPmETCT07vnDSiIaUBuyut0X
+ *  (youtube)
+ *
+ *  or
+ *
+ *  https://classroom.udacity.com/courses/ud855/lessons/3940839262/concepts/43314600850923#
+ *  (udacity class)
+ *
+ *  These videos explain the concepts much better than a comment header in this file!
+ *
+ * See also the Content Provider discussion in the Udacity Android App development class (853).
+ */
 
 public class MovieDetailFragment extends Fragment
         implements LoaderManager.LoaderCallbacks<Cursor> {
@@ -170,8 +189,10 @@ public class MovieDetailFragment extends Fragment
 
         /*
          * Yes yes my master, we have the Precious handle to the Layout!!
+         *
+         * NOTE: now obsolete - moved to the Constraint system for layout
          */
-        // mTheMasterGridLayout = (GridLayout) rootView.findViewById(R.id.movie_detail_grid_layout);
+//        mTheMasterGridLayout = (GridLayout) rootView.findViewById(R.id.movie_detail_grid_layout);
 //        mTheMasterGridLayout = (ConstraintLayout)
 //                rootView.findViewById(R.id.movie_detail_grid_layout);
 
@@ -367,7 +388,7 @@ public class MovieDetailFragment extends Fragment
          * before the info is retrieved in the cursor.
          */
         ViewParent vp = getView().getParent();
-        if (vp instanceof CardView) {
+        if (vp != null && vp instanceof CardView) {
             ((View) vp).setVisibility(View.INVISIBLE);
         }
         return null;
@@ -387,8 +408,24 @@ public class MovieDetailFragment extends Fragment
             mMDTitleView.setContentDescription(movie_title);
 
             String movie_poster_path = cursor.getString(COL_POSTER_PATH);
-            Picasso.with(getContext()).load("http://image.tmdb.org/t/p/w185/" + movie_poster_path)
+            Picasso.with(getContext())
+                    .load("http://image.tmdb.org/t/p/w185/" + movie_poster_path)
                     .into(mMDPosterView);
+
+//            Glide.with(getContext())
+//                    .load("http://image.tmdb.org/t/p/w185/" + movie_poster_path)
+//                    // .fitCenter()
+//
+//                    .error(R.drawable.ic_no_wifi)
+//                    .override(100, 150)
+//                    // .fitCenter()
+//                    // .centerCrop()   // results in cropping - not acceptable
+//                    .dontAnimate()  // this causes jank if used instead of crossFade
+//                    // .crossFade(1)
+//                    .placeholder(R.drawable.ic_loading)
+
+//                    .into(mMDPosterView);
+
 
             String release_date = cursor.getString(COL_RELEASE_DATE);
             mMDYear.setText(release_date);

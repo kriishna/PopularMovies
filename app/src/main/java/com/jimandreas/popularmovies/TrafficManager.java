@@ -43,10 +43,21 @@ import java.util.Iterator;
 public class TrafficManager {
     private static final String LOG_TAG = TrafficManager.class.getSimpleName();
     private static TrafficManager mInstance;
-    private static Context mContext;
-    private static MovieLoadFavorites mLoadFavorites;
-    private static MovieLoadDetails mLoadDetails;
+    private Context mContext;
+    private MovieLoadFavorites mLoadFavorites;
+    private MovieLoadDetails mLoadDetails;
     private static Iterator mIterator;
+
+    private TrafficManager(Context context) {
+        mContext = context;
+    }
+
+    public static synchronized TrafficManager getInstance(Context context) {
+        if (mInstance == null) {
+            mInstance = new TrafficManager(context);
+        }
+        return mInstance;
+    }
 
     /**
      * Modality of the app- which type of movies are displayed?
@@ -65,14 +76,6 @@ public class TrafficManager {
     @TrafficManager.DisplayMode
     int mTMdisplayMode = POPULAR;
 
-//    public String getDisplayMode() {
-//        return mDisplayMode;
-//    }
-//
-//    public void setDisplayMode(String mDisplayMode) {
-//        this.mDisplayMode = mDisplayMode;
-//    }
-
     @TrafficManager.DisplayMode
     public int getDisplayMode() {
         return mTMdisplayMode;
@@ -89,7 +92,7 @@ public class TrafficManager {
     }
 
     /*
-     * 2) track pages of movies downloaded,
+     * track pages of movies downloaded,
      * as it is possible for the PopularMovieFragment to be destroyed!
      */
     private int mPopularMoviesPage = 0;
@@ -181,16 +184,7 @@ public class TrafficManager {
     private static HashSet<Integer> mPopularUpdatePending = null;
 
 
-    private TrafficManager(Context context) {
-        mContext = context;
-    }
 
-    public static synchronized TrafficManager getInstance(Context context) {
-        if (mInstance == null) {
-            mInstance = new TrafficManager(context);
-        }
-        return mInstance;
-    }
 
     /*
      * 3) manage list of favorited movie ids.
@@ -342,8 +336,4 @@ public class TrafficManager {
     public  void setFavoritesPosition(int position) {
         mFavoritesPosition = position;
     }
-
-
-
-
 }

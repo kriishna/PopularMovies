@@ -13,8 +13,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+//import com.bumptech.glide.Glide;
 import com.jimandreas.popularmovies.data.MovieContract;
 import com.squareup.picasso.Picasso;
+// import com.squareup.picasso.Picasso;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
 
@@ -88,6 +90,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     @Override
     public void onBindViewHolder(MovieViewHolder movieViewHolder, int position) {
+
+        if (!mCursor.moveToFirst()) {
+            return;
+        }
         mPosition = position;
 
         mCursor.moveToPosition(position);
@@ -105,11 +111,23 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
         movieViewHolder.mPosterView.setContentDescription(movie_title);
         String movie_poster_path = mCursor.getString(PopularMovieFragment.COL_POSTER_PATH);
+
         Picasso.with(mContext)
                 .load("http://image.tmdb.org/t/p/w185/" + movie_poster_path)
                 .error(R.drawable.ic_no_wifi)
                 .placeholder(R.drawable.ic_loading)
                 .into(movieViewHolder.mPosterView);
+
+//        Glide.with(mContext)
+//                .load("http://image.tmdb.org/t/p/w185/" + movie_poster_path)
+//                .error(R.drawable.ic_no_wifi)
+//                .override(175, 278)
+//                // .fitCenter()
+//                // .centerCrop()   // results in cropping - not acceptable
+//                // .dontAnimate()  // this causes jank if used instead of crossFade
+//                .crossFade(1)
+//                .placeholder(R.drawable.ic_loading)
+//                .into(movieViewHolder.mPosterView);
 
         // if we are in display favorites mode,
         // then adjust the colors of the background

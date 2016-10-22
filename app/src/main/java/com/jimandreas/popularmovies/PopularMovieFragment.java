@@ -121,38 +121,19 @@ public class PopularMovieFragment extends Fragment
     static final int COL_SPARE_STRING3 = 30;
     static final int COL_THIS_TABLE_NAME = 31;
 
-
-    // private ArrayAdapter<String> mForecastAdapter;
     private MovieAdapter mMovieAdapter;
     private Bundle mSavedInstanceState = new Bundle();
     private int mPosition = RecyclerView.NO_POSITION;
-    private static final String MOVIE_DATA_PAGE_NUMBER = "Page";
+    private int mOldPosition = RecyclerView.NO_POSITION;
     private RecyclerView mRecyclerView;
     private boolean mAutoSelectView;
 
-//    private String mDisplayMode = DISPLAY_POPULAR;
-
     public static String DISPLAY_TAG = "displaytag";
-//    public static String DISPLAY_POPULAR = "popular";
-//    public static String DISPLAY_TOP_RATED = "toprated";
-//    public static String DISPLAY_FAVORITES = "favorites";
-
-    /*public static final int POPULAR = 0;
-    public static final int TOP_RATED = 1;
-    public static final int FAVORITES = 2;
-    @IntDef( {POPULAR, TOP_RATED, FAVORITES})
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface DisplayMode {}*/
 
     @TrafficManager.DisplayMode
     int displayMode = POPULAR;
 
     private Boolean do_click_on_item_zero = false;
-
-    @TrafficManager.DisplayMode
-    public int getMovieDisplayMode() {
-        return displayMode;
-    }
 
     /**
      * A callback interface that all activities containing this fragment must
@@ -167,7 +148,6 @@ public class PopularMovieFragment extends Fragment
         void onItemSelected(Uri wantMovieDetailsFromThisUri);
     }
 
-
     @Override
     public void onInflate(Activity activity, AttributeSet attrs, Bundle savedInstanceState) {
         super.onInflate(activity, attrs, savedInstanceState);
@@ -175,7 +155,6 @@ public class PopularMovieFragment extends Fragment
                 0, 0);
         mAutoSelectView = a.getBoolean(R.styleable.PopularMovieFragment_autoSelectView, false);
         a.recycle();
-
     }
 
     @Override
@@ -223,18 +202,6 @@ public class PopularMovieFragment extends Fragment
                     default:
                         throw new RuntimeException(LOG_TAG + "display mode is screwed up!!");
                 }
-//                if (mDisplayMode.contains(DISPLAY_POPULAR)) {
-//                    uri = MoviePopular.buildMovieDetailsUri(movie_id);
-//                    mTM.setPopularPosition(mPosition);
-//                } else if (mDisplayMode.contains(DISPLAY_TOP_RATED)) {
-//                    uri = MovieTopRated.buildMovieDetailsUri(movie_id);
-//                    mTM.setTopratedPosition(mPosition);
-//                } else if (mDisplayMode.contains(DISPLAY_FAVORITES)) {
-//                    mTM.setFavoritesPosition(mPosition);
-//                    uri = MovieFavorites.buildMovieDetailsUri(movie_id);
-//                } else {
-//                    throw new RuntimeException(LOG_TAG + "display mode is screwed up!!");
-//                }
                 
                 /*
                  * inform the parent activity that the user would like info on the movie details
@@ -303,14 +270,20 @@ public class PopularMovieFragment extends Fragment
                         case FAVORITES:
                             return;  // don't need to fetch favorites from TheMovieDB
                     }
+
+                    // salt away the position - so that when the onLoadFinished method is called,
+                    //    we don't lose our place in the list
+                    GridLayoutManager mlm = (GridLayoutManager) mRecyclerView.getLayoutManager();
+                    mPosition = mlm.findFirstCompletelyVisibleItemPosition();
+
                     fetchMovieListTask.execute(todo, String.valueOf(page_number));
                     Snackbar.make(mRecyclerView, R.string.movie_detail_fragment_fetching_another_page, Snackbar.LENGTH_SHORT)
                             .setAction("Action", null).show();
                 }
             }
         });
-        displayMode = mTM.getDisplayMode();
 
+        displayMode = mTM.getDisplayMode();
         FetchMovieListTask fetchMovieListTask = new FetchMovieListTask(getActivity());
         String todo = null;
         int the_next_page_of_movies;
@@ -408,6 +381,17 @@ public class PopularMovieFragment extends Fragment
                         if (mRecyclerView.getChildCount() > 0) {
                             mRecyclerView.getViewTreeObserver().removeOnPreDrawListener(this);
 
+                            // let's see if our position needs to be updated after a mode change:
+
+                            GridLayoutManager mlm = (GridLayoutManager) mRecyclerView.getLayoutManager();
+                            int position = mlm.findFirstCompletelyVisibleItemPosition();
+                            if (mPosition == RecyclerView.NO_POSITION) {
+                                Log.d(LOG_TAG, "yup they are equal" + mPosition + "  " + RecyclerView.NO_POSITION);
+                            }
+                            if ((mPosition != RecyclerView.NO_POSITION) && (position != mPosition)) {
+                                mRecyclerView.scrollToPosition(mPosition);
+                            }
+
                             // if we are entering Favorites mode and in two pane mode,
                             // then click on item 0 to insure we really have a favorite selected
 
@@ -449,11 +433,17 @@ public class PopularMovieFragment extends Fragment
     }
 
     public void updateDisplayMode(@TrafficManager.DisplayMode int mode) {
+
+        // check for no-op case
+
+        if (mode == displayMode) {
+            return;
+        }
         int old_position; // debugging
         GridLayoutManager mlm = (GridLayoutManager) mRecyclerView.getLayoutManager();
 
         // save old scroll position if any
-        int position = mlm.findFirstVisibleItemPosition();
+        int position = mlm.findFirstCompletelyVisibleItemPosition();
 
         switch (displayMode) {
             case POPULAR:
@@ -518,11 +508,12 @@ public class PopularMovieFragment extends Fragment
                 }
                 break;
         }
-    mPosition=position;
-    Log.i(LOG_TAG,"Change mode, old position = "+old_position+" new position = "+position);
-}
+        mPosition = position;
+        Log.i(LOG_TAG, "Change mode, old position = " + old_position + " new position = " + position);
+    }
 
-    @TrafficManager.DisplayMode public int getDisplayMode() {
+    @TrafficManager.DisplayMode
+    public int getDisplayMode() {
         return displayMode;
     }
 
