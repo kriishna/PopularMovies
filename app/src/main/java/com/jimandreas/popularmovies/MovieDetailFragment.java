@@ -13,7 +13,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.CardView;
-import android.util.Log;
+import timber.log.Timber;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -276,12 +276,12 @@ public class MovieDetailFragment extends Fragment
                     favoriteValues.remove(MovieFavorites.COLUMN_FAVORITE);
                     favoriteValues.put(MovieFavorites.COLUMN_FAVORITE, 1);
                     favoriteValues.put(MovieFavorites.COLUMN_FAVORITE_TIMESTAMP, mCalendar.getTimeInMillis());
-                    Log.d(LOG_TAG, "favorites - added " + movie_id + " to favorites");
+                    Timber.i("favorites - added " + movie_id + " to favorites");
                 } else {
                     favorite_state = 0;
                     favoriteValues.remove(MovieFavorites.COLUMN_FAVORITE);
                     favoriteValues.put(MovieFavorites.COLUMN_FAVORITE, 0);
-                    Log.d(LOG_TAG, "favorites - removed " + movie_id + " from favorites");
+                    Timber.i("favorites - removed " + movie_id + " from favorites");
                 }
 
                 /*

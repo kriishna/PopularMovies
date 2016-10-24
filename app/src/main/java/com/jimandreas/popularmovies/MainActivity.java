@@ -17,6 +17,8 @@ import android.view.MenuItem;
 
 import com.jimandreas.popularmovies.utils.Utility;
 
+import timber.log.Timber;
+
 import static com.jimandreas.popularmovies.TrafficManager.FAVORITES;
 import static com.jimandreas.popularmovies.TrafficManager.POPULAR;
 import static com.jimandreas.popularmovies.TrafficManager.TOP_RATED;
@@ -33,6 +35,11 @@ public class MainActivity extends AppCompatActivity
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(new Timber.DebugTree());
+        }
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

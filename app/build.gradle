@@ -28,7 +28,7 @@ android {
             it.buildConfigField 'String', 'THE_MOVIE_DATABASE_API_KEY', TheMovieDbApiToken
         }
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
@@ -69,4 +69,5 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     //compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha9'
+    compile 'com.jakewharton.timber:timber:4.3.1'
 }

@@ -19,7 +19,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.jimandreas.popularmovies.data.MovieContract;
 import com.jimandreas.popularmovies.data.MovieContract.MoviePopular;
@@ -35,8 +34,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Iterator;
 import java.util.Vector;
+
+import timber.log.Timber;
 
 public class FetchMovieListTask extends AsyncTask<String, Void, Void> {
 
@@ -162,10 +162,10 @@ public class FetchMovieListTask extends AsyncTask<String, Void, Void> {
                 inserted = mContext.getContentResolver().bulkInsert(uri, cvArray);
             }
 
-            if (EXTRA_VERBOSE) Log.i(LOG_TAG, "download complete. " + inserted + " Inserted");
+            if (EXTRA_VERBOSE) Timber.i("download complete. " + inserted + " Inserted");
 
         } catch (JSONException e) {
-            Log.e(LOG_TAG, e.getMessage(), e);
+            Timber.i(e.getMessage(), e);
             e.printStackTrace();
         }
     }
@@ -303,7 +303,7 @@ public class FetchMovieListTask extends AsyncTask<String, Void, Void> {
                     null);
 
         } catch (JSONException e) {
-            Log.e(LOG_TAG, e.getMessage(), e);
+            Timber.i(e.getMessage(), e);
             e.printStackTrace();
         }
     }
@@ -339,7 +339,7 @@ public class FetchMovieListTask extends AsyncTask<String, Void, Void> {
                 .appendQueryParameter(APPID, THE_MOVIE_DATABASE_API_KEY)
                 .build();
 
-        Log.i(LOG_TAG, "fetching URL: " + fetch_string);
+        Timber.i("fetching URL: " + fetch_string);
 
         // These two need to be declared outside the try/catch
         // so that they can be closed in the finally block.
@@ -389,11 +389,11 @@ public class FetchMovieListTask extends AsyncTask<String, Void, Void> {
             }
 
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Error ", e);
+            Timber.i("Error ", e);
             // If the code didn't successfully get the weather data, there's no point in attempting
             // to parse it.
         } catch (JSONException e) {
-            Log.e(LOG_TAG, e.getMessage(), e);
+            Timber.i(e.getMessage(), e);
             e.printStackTrace();
         } finally {
             if (urlConnection != null) {
@@ -403,7 +403,7 @@ public class FetchMovieListTask extends AsyncTask<String, Void, Void> {
                 try {
                     reader.close();
                 } catch (final IOException e) {
-                    Log.e(LOG_TAG, "Error closing stream", e);
+                    Timber.i("Error closing stream", e);
                 }
             }
         }

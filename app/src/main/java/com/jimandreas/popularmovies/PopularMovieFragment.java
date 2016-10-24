@@ -20,7 +20,7 @@ import android.support.v4.content.Loader;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.util.Log;
+import timber.log.Timber;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -238,7 +238,7 @@ public class PopularMovieFragment extends Fragment
                 int offset = mRecyclerView.computeVerticalScrollOffset();
                 int height = mRecyclerView.computeVerticalScrollExtent();
                 int range = mRecyclerView.computeVerticalScrollRange();
-//                Log.d(LOG_TAG, "scrolling offset is " + offset
+//                Timber.i("scrolling offset is " + offset
 //                        + " of height " + height
 //                        + " of range " + range);
 
@@ -251,9 +251,9 @@ public class PopularMovieFragment extends Fragment
                                 .setAction("Action", null).show();
                         return;
                     }
-                    Log.i(LOG_TAG, "offset = " + offset + " height = " + height);
+                    Timber.i("offset = " + offset + " height = " + height);
                     int page_number = 1;
-                    if (EXTRA_VERBOSE) Log.d(LOG_TAG, "**** time to get more data!!");
+                    if (EXTRA_VERBOSE) Timber.i("**** time to get more data!!");
                     FetchMovieListTask fetchMovieListTask = new FetchMovieListTask(getActivity());
 
                     switch (displayMode) {
@@ -386,7 +386,7 @@ public class PopularMovieFragment extends Fragment
                             GridLayoutManager mlm = (GridLayoutManager) mRecyclerView.getLayoutManager();
                             int position = mlm.findFirstCompletelyVisibleItemPosition();
                             if (mPosition == RecyclerView.NO_POSITION) {
-                                Log.d(LOG_TAG, "yup they are equal" + mPosition + "  " + RecyclerView.NO_POSITION);
+                                Timber.i("yup they are equal" + mPosition + "  " + RecyclerView.NO_POSITION);
                             }
                             if ((mPosition != RecyclerView.NO_POSITION) && (position != mPosition)) {
                                 mRecyclerView.scrollToPosition(mPosition);
@@ -509,7 +509,7 @@ public class PopularMovieFragment extends Fragment
                 break;
         }
         mPosition = position;
-        Log.i(LOG_TAG, "Change mode, old position = " + old_position + " new position = " + position);
+        Timber.i("Change mode, old position = " + old_position + " new position = " + position);
     }
 
     @TrafficManager.DisplayMode

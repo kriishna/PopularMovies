@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.support.annotation.IntDef;
-import android.util.Log;
+import timber.log.Timber;
 
 import com.jimandreas.popularmovies.data.MovieContract;
 import com.jimandreas.popularmovies.data.MovieLoadDetails;
@@ -137,12 +137,12 @@ public class TrafficManager {
         }
         int count = cursor.getCount();
         if ((count % 20) != 0) {
-            Log.e(LOG_TAG, "there are duplicate movie_ids!! Ugh.  Patching.");
+            Timber.i("there are duplicate movie_ids!! Ugh.  Patching.");
             count = count+19;
         }
         mPopularMoviesPage = count / 20;
         cursor.close();
-        Log.i(LOG_TAG, "Popular page count = " + mPopularMoviesPage  + ", count is " + count);
+        Timber.i("Popular page count = " + mPopularMoviesPage  + ", count is " + count);
         return (mPopularMoviesPage);
     }
 
@@ -169,12 +169,12 @@ public class TrafficManager {
         }
         int count = cursor.getCount();
         if ((count % 20) != 0) {
-            Log.e(LOG_TAG, "there are duplicate movie_ids!! Ugh.  Patching.");
+            Timber.i("there are duplicate movie_ids!! Ugh.  Patching.");
             count = count+19;
         }
         mTopRatedMoviesPage = count / 20;
         cursor.close();
-        Log.i(LOG_TAG, "Top rated page count = " + mTopRatedMoviesPage + ", count is " + count);
+        Timber.i("Top rated page count = " + mTopRatedMoviesPage + ", count is " + count);
         return (mTopRatedMoviesPage);
     }
 
@@ -223,7 +223,7 @@ public class TrafficManager {
         mLoadFavorites.execute("do this");
 
 //        while ( iterator.hasNext() )
-//            Log.d(LOG_TAG, "   " + iterator.next());
+//            Timber.i("   " + iterator.next());
     }
 
     /*
