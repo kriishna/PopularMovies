@@ -9,6 +9,7 @@ https://play.google.com/store/apps/details?id=com.jimandreas.popularmovies
  * Switched from GridLayout to Constraints on movie detail activity
  * Reworked code to use annotations for app state instead of strings (much cleaner)
  * Added release key generation (see below)
+ * Working on ripple for Lollipop+
 
 ## History
 
