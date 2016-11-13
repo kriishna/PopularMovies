@@ -5,14 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="RtlHardcoded"
     android:id="@+id/card_view"
-    android:clickable="true"
     android:layout_gravity="top"
     android:layout_width="@dimen/list_item_card_width"
     android:layout_height="@dimen/list_item_card_height"
     card_view:cardCornerRadius="4dp"
     android:gravity="top"
-    android:foreground="?android:attr/selectableItemBackground"
-    android:background="@drawable/button_normal"
+    android:foreground="@drawable/button_normal"
     card_view:cardUseCompatPadding="true"
     card_view:contentPaddingLeft="10dp"
     card_view:contentPaddingRight="10dp"
@@ -21,8 +19,7 @@
     card_view:cardElevation="@dimen/card_view_elevation">
 
     <RelativeLayout
-        android:foreground="?android:attr/selectableItemBackground"
-        android:clickable="false"
+        android:foreground="@drawable/button_normal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/list_item_layout"
@@ -30,9 +27,6 @@
         >
 
         <ImageView
-            android:background="@drawable/button_normal"
-            android:clickable="false"
-            android:foreground="?android:attr/selectableItemBackground"
             android:layout_width="185dp"
             android:layout_height="278dp"
             tools:background="@drawable/oldest_movie"
@@ -41,8 +35,6 @@
             tools:ignore="ContentDescription" />
 
         <ImageView
-            android:background="@drawable/button_normal"
-            android:clickable="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/imageView2"
@@ -53,8 +45,6 @@
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:background="@drawable/button_normal"
-            android:clickable="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -69,8 +59,6 @@
             tools:ignore="RtlHardcoded" />
 
         <ImageView
-            android:background="@drawable/button_normal"
-            android:clickable="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/favorite_indicator"

@@ -49,6 +49,10 @@
     <string name="movie_detail_fragment_no_connection">No network, so no more movies, sorry \'bout that!!</string>
     <string name="movie_detail_fragment_fetching_another_page">Fetching another page of movies</string>
 
+    <!-- descriptions -->
+    <string name="desc_favorites">Favorites</string>
+    <string name="desc_rating">Rating</string>
+
 
 
 </resources>
