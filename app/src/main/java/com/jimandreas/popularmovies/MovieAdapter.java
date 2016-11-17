@@ -46,7 +46,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
             view.setOnClickListener(this);
             // added - symantic change in clicking starting at API 23
-            mListItem.setOnClickListener(this);
+            //mListItem.setOnClickListener(this);
+
+            /*
+             * NOTE: have to set the onClickListener to the CardView - to
+             *    accurately change selection color for group
+             */
+            mCardView.setOnClickListener(this);
         }
 
         @Override

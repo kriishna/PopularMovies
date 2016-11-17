@@ -55,6 +55,12 @@ public class TrafficManager {
     public static synchronized TrafficManager getInstance(Context context) {
         if (mInstance == null) {
             mInstance = new TrafficManager(context);
+            /*
+             * init Timber here... One time only!
+             */
+            if (BuildConfig.DEBUG) {
+                Timber.plant(new Timber.DebugTree());
+            }
         }
         return mInstance;
     }

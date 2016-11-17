@@ -1,38 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- A CardView that contains a TextView -->
+
+<!--added click behavior pre API 21-->
+<!--see http://stackoverflow.com/a/31014417/3853712-->
 <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="RtlHardcoded"
     android:id="@+id/card_view"
-    android:clickable="true"
+
     android:layout_gravity="top"
     android:layout_width="@dimen/list_item_card_width"
     android:layout_height="@dimen/list_item_card_height"
     card_view:cardCornerRadius="4dp"
     android:gravity="top"
-    android:foreground="?android:attr/selectableItemBackground"
-    android:background="@drawable/button_normal"
+
     card_view:cardUseCompatPadding="true"
     card_view:contentPaddingLeft="10dp"
     card_view:contentPaddingRight="10dp"
     card_view:contentPaddingTop="1dp"
     card_view:contentPaddingBottom="10dp"
-    card_view:cardElevation="@dimen/card_view_elevation">
+    card_view:cardElevation="@dimen/card_view_elevation"
 
+    style="@style/MyCardViewStyle"
+
+    >
+
+    <!--attempts to convince all elements in RelativeLayout to respond to clicks-->
+    <!--Note - this was unsuccessful - went to the Style above-->
+    <!--android:clickable="true"-->
+    <!--android:focusable="true"-->
+    <!--card_view:cardBackgroundColor="@color/card_view_color_statelist"-->
+    <!---->
+
+    <!--android:clickable="true"-->
+    <!--android:background="@drawable/button_normal"-->
+    <!--   http://stackoverflow.com/a/34402616/3853712 -->
     <RelativeLayout
-        android:foreground="?android:attr/selectableItemBackground"
-        android:clickable="false"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/list_item_layout"
         android:padding="0dp"
+        android:clickable="false"
+
         >
 
         <ImageView
-            android:background="@drawable/button_normal"
+
             android:clickable="false"
-            android:foreground="?android:attr/selectableItemBackground"
             android:layout_width="185dp"
             android:layout_height="278dp"
             tools:background="@drawable/oldest_movie"
@@ -41,7 +57,7 @@
             tools:ignore="ContentDescription" />
 
         <ImageView
-            android:background="@drawable/button_normal"
+
             android:clickable="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -53,7 +69,7 @@
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:background="@drawable/button_normal"
+
             android:clickable="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -69,7 +85,7 @@
             tools:ignore="RtlHardcoded" />
 
         <ImageView
-            android:background="@drawable/button_normal"
+
             android:clickable="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -16,7 +16,10 @@
     card_view:contentPaddingRight="10dp"
     card_view:contentPaddingTop="1dp"
     card_view:contentPaddingBottom="10dp"
-    card_view:cardElevation="@dimen/card_view_elevation">
+    card_view:cardElevation="@dimen/card_view_elevation"
+
+
+    >
 
     <RelativeLayout
         android:foreground="@drawable/button_normal"

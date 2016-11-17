@@ -5,17 +5,17 @@ apply plugin: 'com.android.application'
 // http://stackoverflow.com/questions/4616095/how-to-get-the-build-version-number-of-your-android-application
 def versionMajor = 1
 def versionMinor = 1  //  constraint layout for movie detail now
-def versionPatch = 5
-def versionBuild = 15 // bump for dogfood builds, public betas, etc.
+def versionPatch = 7
+def versionBuild = 17 // bump for dogfood builds, public betas, etc.
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.3"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.0"
 
     defaultConfig {
         applicationId "com.jimandreas.popularmovies"
         minSdkVersion 16
-        targetSdkVersion 24
+        targetSdkVersion 25
 
         versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
@@ -57,17 +57,22 @@ if (propFile.canRead()) {
     android.buildTypes.release.signingConfig = null
 }
 
+// see gradle.properties
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:24.+'
-    compile 'com.android.support:support-compat:24.+'
-    compile 'com.android.support:design:24.+'
-    compile 'com.android.support:gridlayout-v7:24.+'
-    compile 'com.android.support:cardview-v7:24.+'
-    compile 'com.android.support:recyclerview-v7:24.+'
+
+    // NOTE: switch between these two - the app compat was broken apart as of 24.2
+
+    compile "com.android.support:appcompat-v7:${android_support_lib_version}"
+    // compile "com.android.support:support-compat:${android_support_lib_version}"
+
+    compile "com.android.support:design:${android_support_lib_version}"
+    // compile "com.android.support:gridlayout-v7:${android_support_lib_version}"
+    compile "com.android.support:cardview-v7:${android_support_lib_version}"
+    compile "com.android.support:recyclerview-v7:${android_support_lib_version}"
     compile 'com.squareup.picasso:picasso:2.5.2'
     //compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha9'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
     compile 'com.jakewharton.timber:timber:4.3.1'
 }
